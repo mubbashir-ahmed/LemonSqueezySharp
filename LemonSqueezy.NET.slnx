@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LemonSqueezy.NET.csproj" />
+  <Project Path="tests/LemonSqueezy.NET.Tests/LemonSqueezy.NET.Tests.csproj" />
+</Solution>
