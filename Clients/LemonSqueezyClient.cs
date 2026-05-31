@@ -27,7 +27,9 @@ public sealed class LemonSqueezyClient : ILemonSqueezyClient
         ILicenseKeysClient licenseKeys,
         ILicenseKeyInstancesClient licenseKeyInstances,
         ICheckoutsClient checkouts,
-        IWebhooksClient webhooks)
+        IWebhooksClient webhooks,
+        IAffiliatesClient affiliates,
+        ILicensesClient licenses)
     {
         Users = users;
         Stores = stores;
@@ -48,6 +50,8 @@ public sealed class LemonSqueezyClient : ILemonSqueezyClient
         LicenseKeyInstances = licenseKeyInstances;
         Checkouts = checkouts;
         Webhooks = webhooks;
+        Affiliates = affiliates;
+        Licenses = licenses;
     }
 
     public IUsersClient Users { get; }
@@ -69,4 +73,6 @@ public sealed class LemonSqueezyClient : ILemonSqueezyClient
     public ILicenseKeyInstancesClient LicenseKeyInstances { get; }
     public ICheckoutsClient Checkouts { get; }
     public IWebhooksClient Webhooks { get; }
+    public IAffiliatesClient Affiliates { get; }
+    public ILicensesClient Licenses { get; }
 }

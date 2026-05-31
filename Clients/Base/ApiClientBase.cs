@@ -43,8 +43,11 @@ public abstract class ApiClientBase : IApiClient
         string requestUri,
         CancellationToken cancellationToken)
     {
-        using var response = await HttpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
-        await EnsureSuccessAsync(response, cancellationToken).ConfigureAwait(false);
+        using var response = await HttpClient.GetAsync(requestUri, cancellationToken)
+            .ConfigureAwait(false);
+
+        await EnsureSuccessAsync(response, cancellationToken)
+            .ConfigureAwait(false);
 
         return await response.Content
             .ReadFromJsonAsync<JsonApiResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
@@ -59,8 +62,11 @@ public abstract class ApiClientBase : IApiClient
         string requestUri,
         CancellationToken cancellationToken)
     {
-        using var response = await HttpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
-        await EnsureSuccessAsync(response, cancellationToken).ConfigureAwait(false);
+        using var response = await HttpClient.GetAsync(requestUri, cancellationToken)
+            .ConfigureAwait(false);
+
+        await EnsureSuccessAsync(response, cancellationToken)
+            .ConfigureAwait(false);
 
         return await response.Content
             .ReadFromJsonAsync<JsonApiCollectionResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
@@ -79,7 +85,9 @@ public abstract class ApiClientBase : IApiClient
         {
             Content = CreateJsonApiContent(body),
         };
-        return await SendAndReadAsync<TResource>(request, cancellationToken).ConfigureAwait(false);
+
+        return await SendAndReadAsync<TResource>(request, cancellationToken)
+            .ConfigureAwait(false);
     }
 
     /// <summary>
@@ -94,26 +102,86 @@ public abstract class ApiClientBase : IApiClient
         {
             Content = CreateJsonApiContent(body),
         };
-        return await SendAndReadAsync<TResource>(request, cancellationToken).ConfigureAwait(false);
-    }
 
-    private async Task<JsonApiResponse<TResource>?> SendAndReadAsync<TResource>(
-        HttpRequestMessage request,
-        CancellationToken cancellationToken)
-    {
-        using var response = await HttpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
-        await EnsureSuccessAsync(response, cancellationToken).ConfigureAwait(false);
-
-        return await response.Content
-            .ReadFromJsonAsync<JsonApiResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
+        return await SendAndReadAsync<TResource>(request, cancellationToken)
             .ConfigureAwait(false);
     }
 
-    private static JsonContent CreateJsonApiContent<TBody>(TBody body)
+    /// <summary>
+    /// Sends a <c>DELETE</c> and deserialises a single-resource JSON:API response —
+    /// used for endpoints that mutate state and echo the updated resource back
+    /// (e.g. cancel-subscription).
+    /// </summary>
+    protected async Task<JsonApiResponse<TResource>?> DeleteJsonApiAsync<TResource>(
+        string requestUri,
+        CancellationToken cancellationToken)
     {
-        var content = JsonContent.Create(body, mediaType: null, options: LemonSqueezyJsonOptions.Default);
-        content.Headers.ContentType = new MediaTypeHeaderValue(JsonApiMediaType);
-        return content;
+        using var request = new HttpRequestMessage(HttpMethod.Delete, requestUri);
+
+        return await SendAndReadAsync<TResource>(request, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Sends a <c>DELETE</c> for endpoints that return <c>204 No Content</c>.
+    /// </summary>
+    protected async Task DeleteJsonAsync(string requestUri, CancellationToken cancellationToken)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Delete, requestUri);
+        using var response = await HttpClient.SendAsync(request, cancellationToken)
+            .ConfigureAwait(false);
+
+        await EnsureSuccessAsync(response, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Sends a <c>GET</c> and deserialises a flat (non-JSON:API) JSON response —
+    /// for endpoints that don't follow the JSON:API envelope, e.g.
+    /// <c>/v1/subscription-items/{id}/current-usage</c> which returns a bare
+    /// <c>{ "meta": { … } }</c> object.
+    /// </summary>
+    protected async Task<TResponse?> GetJsonAsync<TResponse>(
+        string requestUri,
+        CancellationToken cancellationToken)
+    {
+        using var response = await HttpClient.GetAsync(requestUri, cancellationToken)
+            .ConfigureAwait(false);
+
+        await EnsureSuccessAsync(response, cancellationToken)
+            .ConfigureAwait(false);
+
+        return await response.Content
+            .ReadFromJsonAsync<TResponse>(LemonSqueezyJsonOptions.Default, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Posts a <c>application/x-www-form-urlencoded</c> body and deserialises a flat
+    /// (non-JSON:API) JSON response — used by the License API
+    /// (<c>/v1/licenses/*</c>) which doesn't use the JSON:API media type.
+    /// </summary>
+    protected async Task<TResponse?> PostFormAsync<TResponse>(
+        string requestUri,
+        IEnumerable<KeyValuePair<string, string>> form,
+        CancellationToken cancellationToken)
+    {
+        using var content = new FormUrlEncodedContent(form);
+        using var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = content };
+
+        // The License API responds with plain JSON, not JSON:API — tell the server so.
+        request.Headers.Accept.Clear();
+        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        using var response = await HttpClient.SendAsync(request, cancellationToken)
+            .ConfigureAwait(false);
+
+        await EnsureSuccessAsync(response, cancellationToken)
+            .ConfigureAwait(false);
+
+        return await response.Content
+            .ReadFromJsonAsync<TResponse>(LemonSqueezyJsonOptions.Default, cancellationToken)
+            .ConfigureAwait(false);
     }
 
     /// <summary>
@@ -127,9 +195,11 @@ public abstract class ApiClientBase : IApiClient
         }
 
 #if NET10_0_OR_GREATER
-        var body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+        var body = await response.Content.ReadAsStringAsync(cancellationToken)
+            .ConfigureAwait(false);
 #else
-        var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        var body = await response.Content.ReadAsStringAsync()
+            .ConfigureAwait(false);
 #endif
 
         var requestId = response.Headers.TryGetValues(RequestIdHeader, out var ids)
@@ -187,7 +257,7 @@ public abstract class ApiClientBase : IApiClient
     /// </summary>
     protected static void Append(StringBuilder builder, string key, string? value)
     {
-        if (string.IsNullOrEmpty(value))
+        if (string.IsNullOrWhiteSpace(value))
         {
             return;
         }
@@ -196,6 +266,35 @@ public abstract class ApiClientBase : IApiClient
         builder.Append(Uri.EscapeDataString(key));
         builder.Append('=');
         builder.Append(Uri.EscapeDataString(value));
+    }
+
+    private async Task<JsonApiResponse<TResource>?> SendAndReadAsync<TResource>(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        using var response = await HttpClient.SendAsync(request, cancellationToken)
+            .ConfigureAwait(false);
+
+        await EnsureSuccessAsync(response, cancellationToken)
+            .ConfigureAwait(false);
+
+        if (response.StatusCode == HttpStatusCode.NoContent ||
+            response.Content.Headers.ContentLength == 0)
+        {
+            return null;
+        }
+
+        return await response.Content
+            .ReadFromJsonAsync<JsonApiResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    private static JsonContent CreateJsonApiContent<TBody>(TBody body)
+    {
+        var content = JsonContent.Create(body, mediaType: null, options: LemonSqueezyJsonOptions.Default);
+        content.Headers.ContentType = new MediaTypeHeaderValue(JsonApiMediaType);
+
+        return content;
     }
 
     private static (string Message, IReadOnlyList<string> Errors) TryReadErrorBody(string body)

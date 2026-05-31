@@ -25,4 +25,6 @@ public interface ILemonSqueezyClient
     ILicenseKeyInstancesClient LicenseKeyInstances { get; }
     ICheckoutsClient Checkouts { get; }
     IWebhooksClient Webhooks { get; }
+    IAffiliatesClient Affiliates { get; }
+    ILicensesClient Licenses { get; }
 }

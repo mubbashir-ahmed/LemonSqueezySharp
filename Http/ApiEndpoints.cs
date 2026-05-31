@@ -25,9 +25,12 @@ internal static class ApiEndpoints
     public const string Discounts = "discounts";
     public const string DiscountRedemptions = "discount-redemptions";
 
+    public const string Licenses = "licenses";
     public const string LicenseKeys = "license-keys";
     public const string LicenseKeyInstances = "license-key-instances";
 
     public const string Checkouts = "checkouts";
     public const string Webhooks = "webhooks";
+
+    public const string Affiliates = "affiliates";
 }

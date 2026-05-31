@@ -18,7 +18,7 @@ public sealed class PagedBaseResult<T>
 
     public PageMeta? Meta { get; }
 
-    public bool HasNext => !string.IsNullOrEmpty(Links?.Next);
+    public bool HasNext => !string.IsNullOrWhiteSpace(Links?.Next);
 
-    public bool HasPrevious => !string.IsNullOrEmpty(Links?.Previous);
+    public bool HasPrevious => !string.IsNullOrWhiteSpace(Links?.Previous);
 }

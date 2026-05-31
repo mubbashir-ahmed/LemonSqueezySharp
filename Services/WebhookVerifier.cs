@@ -34,7 +34,7 @@ public sealed class WebhookVerifier : IWebhookVerifier
         }
 
         var secret = _options.CurrentValue.WebhookSigningSecret;
-        if (string.IsNullOrEmpty(secret))
+        if (string.IsNullOrWhiteSpace(secret))
         {
             throw new InvalidOperationException(
                 $"{nameof(LemonSqueezyOptions.WebhookSigningSecret)} must be configured " +

@@ -98,6 +98,8 @@ public static class ServiceCollectionExtensions
         last = RegisterResourceClient<IUsersClient, UsersClient>(services);
         last = RegisterResourceClient<IVariantsClient, VariantsClient>(services);
         last = RegisterResourceClient<IWebhooksClient, WebhooksClient>(services);
+        last = RegisterResourceClient<IAffiliatesClient, AffiliatesClient>(services);
+        last = RegisterResourceClient<ILicensesClient, LicensesClient>(services);
 
         return last!;
     }
