@@ -136,4 +136,11 @@ public sealed class SubscriptionUrls
 
     [JsonPropertyName("customer_portal")]
     public string? CustomerPortal { get; set; }
+
+    /// <summary>
+    /// Deep-link into the customer portal that opens the "update subscription" flow
+    /// for this specific subscription.
+    /// </summary>
+    [JsonPropertyName("customer_portal_update_subscription")]
+    public string? CustomerPortalUpdateSubscription { get; set; }
 }

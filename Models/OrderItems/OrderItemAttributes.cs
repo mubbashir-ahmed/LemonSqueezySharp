@@ -17,6 +17,9 @@ public sealed class OrderItemAttributes
     [JsonPropertyName("variant_id")]
     public long? VariantId { get; set; }
 
+    [JsonPropertyName("price_id")]
+    public long? PriceId { get; set; }
+
     [JsonPropertyName("product_name")]
     public string? ProductName { get; set; }
 
@@ -28,6 +31,9 @@ public sealed class OrderItemAttributes
 
     [JsonPropertyName("quantity")]
     public int? Quantity { get; set; }
+
+    [JsonPropertyName("test_mode")]
+    public bool? TestMode { get; set; }
 
     [JsonPropertyName("created_at")]
     public DateTimeOffset? CreatedAt { get; set; }

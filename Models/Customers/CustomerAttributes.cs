@@ -39,10 +39,13 @@ public sealed class CustomerAttributes
     public long? TotalRevenueCurrency { get; set; }
 
     [JsonPropertyName("total_revenue_currency_formatted")]
-    public long? TotalRevenueCurrencyFormatted { get; set; }
+    public string? TotalRevenueCurrencyFormatted { get; set; }
 
     [JsonPropertyName("mrr")]
     public long? Mrr { get; set; }
+
+    [JsonPropertyName("mrr_formatted")]
+    public string? MrrFormatted { get; set; }
 
     [JsonPropertyName("urls")]
     public CustomerUrls? Urls { get; set; }

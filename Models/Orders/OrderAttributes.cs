@@ -68,6 +68,9 @@ public sealed class OrderAttributes
     [JsonPropertyName("total")]
     public long? Total { get; set; }
 
+    [JsonPropertyName("refunded_amount")]
+    public long? RefundedAmount { get; set; }
+
     [JsonPropertyName("subtotal_usd")]
     public long? SubtotalUsd { get; set; }
 
@@ -83,6 +86,9 @@ public sealed class OrderAttributes
     [JsonPropertyName("total_usd")]
     public long? TotalUsd { get; set; }
 
+    [JsonPropertyName("refunded_amount_usd")]
+    public long? RefundedAmountUsd { get; set; }
+
     [JsonPropertyName("subtotal_formatted")]
     public string? SubtotalFormatted { get; set; }
 
@@ -97,6 +103,9 @@ public sealed class OrderAttributes
 
     [JsonPropertyName("total_formatted")]
     public string? TotalFormatted { get; set; }
+
+    [JsonPropertyName("refunded_amount_formatted")]
+    public string? RefundedAmountFormatted { get; set; }
 
     [JsonPropertyName("first_order_item")]
     public OrderFirstItem? FirstOrderItem { get; set; }
