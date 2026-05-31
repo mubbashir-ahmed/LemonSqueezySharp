@@ -10,7 +10,7 @@ namespace LemonSqueezy.NET.Extensions;
 /// </summary>
 public static class HttpResponseMessageExtensions
 {
-    public static Task<JsonApiResponse<TAttributes>?> ReadJsonApiAsync<TAttributes>(
+    public static Task<JsonApiResponse<TResource>?> ReadJsonApiAsync<TResource>(
         this HttpResponseMessage response,
         CancellationToken cancellationToken = default)
     {
@@ -19,12 +19,12 @@ public static class HttpResponseMessageExtensions
             throw new ArgumentNullException(nameof(response));
         }
 
-        return response.Content.ReadFromJsonAsync<JsonApiResponse<TAttributes>>(
+        return response.Content.ReadFromJsonAsync<JsonApiResponse<TResource>>(
             LemonSqueezyJsonOptions.Default,
             cancellationToken);
     }
 
-    public static Task<JsonApiCollectionResponse<TAttributes>?> ReadJsonApiCollectionAsync<TAttributes>(
+    public static Task<JsonApiCollectionResponse<TResource>?> ReadJsonApiCollectionAsync<TResource>(
         this HttpResponseMessage response,
         CancellationToken cancellationToken = default)
     {
@@ -33,7 +33,7 @@ public static class HttpResponseMessageExtensions
             throw new ArgumentNullException(nameof(response));
         }
 
-        return response.Content.ReadFromJsonAsync<JsonApiCollectionResponse<TAttributes>>(
+        return response.Content.ReadFromJsonAsync<JsonApiCollectionResponse<TResource>>(
             LemonSqueezyJsonOptions.Default,
             cancellationToken);
     }

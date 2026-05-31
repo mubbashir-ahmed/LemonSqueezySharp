@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Clients.Interfaces;
+using LemonSqueezy.NET.Interfaces.Clients;
 
-namespace LemonSqueezy.NET.Services;
+namespace LemonSqueezy.NET.Interfaces.Services;
 
 /// <summary>
 /// Optional high-level façade for consumers who prefer a single entry point with

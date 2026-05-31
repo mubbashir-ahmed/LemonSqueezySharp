@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
-using LemonSqueezy.NET.Clients.Interfaces.Base;
 using LemonSqueezy.NET.Exceptions;
+using LemonSqueezy.NET.Interfaces.Clients.Base;
 using LemonSqueezy.NET.Models.Common;
 using LemonSqueezy.NET.Serialization;
 
@@ -33,7 +33,7 @@ public abstract class ApiClientBase : IApiClient
     /// Sends a request, validates the response, and returns the deserialized envelope
     /// for a single-resource endpoint.
     /// </summary>
-    protected async Task<JsonApiResponse<TAttributes>?> GetJsonApiAsync<TAttributes>(
+    protected async Task<JsonApiResponse<TResource>?> GetJsonApiAsync<TResource>(
         string requestUri,
         CancellationToken cancellationToken)
     {
@@ -41,7 +41,7 @@ public abstract class ApiClientBase : IApiClient
         await EnsureSuccessAsync(response, cancellationToken).ConfigureAwait(false);
 
         return await response.Content
-            .ReadFromJsonAsync<JsonApiResponse<TAttributes>>(LemonSqueezyJsonOptions.Default, cancellationToken)
+            .ReadFromJsonAsync<JsonApiResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
             .ConfigureAwait(false);
     }
 
@@ -49,7 +49,7 @@ public abstract class ApiClientBase : IApiClient
     /// Sends a request, validates the response, and returns the deserialized envelope
     /// for a list endpoint.
     /// </summary>
-    protected async Task<JsonApiCollectionResponse<TAttributes>?> GetJsonApiCollectionAsync<TAttributes>(
+    protected async Task<JsonApiCollectionResponse<TResource>?> GetJsonApiCollectionAsync<TResource>(
         string requestUri,
         CancellationToken cancellationToken)
     {
@@ -57,7 +57,7 @@ public abstract class ApiClientBase : IApiClient
         await EnsureSuccessAsync(response, cancellationToken).ConfigureAwait(false);
 
         return await response.Content
-            .ReadFromJsonAsync<JsonApiCollectionResponse<TAttributes>>(LemonSqueezyJsonOptions.Default, cancellationToken)
+            .ReadFromJsonAsync<JsonApiCollectionResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
             .ConfigureAwait(false);
     }
 

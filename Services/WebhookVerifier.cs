@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using LemonSqueezy.NET.Configurations;
+using LemonSqueezy.NET.Interfaces.Services;
 using Microsoft.Extensions.Options;
 
 namespace LemonSqueezy.NET.Services;

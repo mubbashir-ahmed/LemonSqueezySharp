@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Clients.Interfaces;
+namespace LemonSqueezy.NET.Interfaces.Clients;
 
 /// <summary>
 /// Root entry point of the LemonSqueezy SDK. Exposes every resource-specific client

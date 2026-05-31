@@ -1,7 +1,8 @@
 using LemonSqueezy.NET.Clients;
-using LemonSqueezy.NET.Clients.Interfaces;
 using LemonSqueezy.NET.Configurations;
 using LemonSqueezy.NET.Http;
+using LemonSqueezy.NET.Interfaces.Clients;
+using LemonSqueezy.NET.Interfaces.Services;
 using LemonSqueezy.NET.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -78,24 +79,24 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ILemonSqueezyClient, LemonSqueezyClient>();
 
         IHttpClientBuilder? last = null;
-        last = RegisterResourceClient<IUsersClient, UsersClient>(services);
-        last = RegisterResourceClient<IStoresClient, StoresClient>(services);
+        last = RegisterResourceClient<ICheckoutsClient, CheckoutsClient>(services);
         last = RegisterResourceClient<ICustomersClient, CustomersClient>(services);
-        last = RegisterResourceClient<IProductsClient, ProductsClient>(services);
-        last = RegisterResourceClient<IVariantsClient, VariantsClient>(services);
-        last = RegisterResourceClient<IPricesClient, PricesClient>(services);
+        last = RegisterResourceClient<IDiscountRedemptionsClient, DiscountRedemptionsClient>(services);
+        last = RegisterResourceClient<IDiscountsClient, DiscountsClient>(services);
         last = RegisterResourceClient<IFilesClient, FilesClient>(services);
-        last = RegisterResourceClient<IOrdersClient, OrdersClient>(services);
+        last = RegisterResourceClient<ILicenseKeyInstancesClient, LicenseKeyInstancesClient>(services);
+        last = RegisterResourceClient<ILicenseKeysClient, LicenseKeysClient>(services);
         last = RegisterResourceClient<IOrderItemsClient, OrderItemsClient>(services);
-        last = RegisterResourceClient<ISubscriptionsClient, SubscriptionsClient>(services);
+        last = RegisterResourceClient<IOrdersClient, OrdersClient>(services);
+        last = RegisterResourceClient<IPricesClient, PricesClient>(services);
+        last = RegisterResourceClient<IProductsClient, ProductsClient>(services);
+        last = RegisterResourceClient<IStoresClient, StoresClient>(services);
         last = RegisterResourceClient<ISubscriptionInvoicesClient, SubscriptionInvoicesClient>(services);
         last = RegisterResourceClient<ISubscriptionItemsClient, SubscriptionItemsClient>(services);
+        last = RegisterResourceClient<ISubscriptionsClient, SubscriptionsClient>(services);
         last = RegisterResourceClient<IUsageRecordsClient, UsageRecordsClient>(services);
-        last = RegisterResourceClient<IDiscountsClient, DiscountsClient>(services);
-        last = RegisterResourceClient<IDiscountRedemptionsClient, DiscountRedemptionsClient>(services);
-        last = RegisterResourceClient<ILicenseKeysClient, LicenseKeysClient>(services);
-        last = RegisterResourceClient<ILicenseKeyInstancesClient, LicenseKeyInstancesClient>(services);
-        last = RegisterResourceClient<ICheckoutsClient, CheckoutsClient>(services);
+        last = RegisterResourceClient<IUsersClient, UsersClient>(services);
+        last = RegisterResourceClient<IVariantsClient, VariantsClient>(services);
         last = RegisterResourceClient<IWebhooksClient, WebhooksClient>(services);
 
         return last!;

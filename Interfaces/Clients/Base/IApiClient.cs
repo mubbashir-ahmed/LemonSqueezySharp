@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Clients.Interfaces.Base;
+namespace LemonSqueezy.NET.Interfaces.Clients.Base;
 
 /// <summary>
 /// Marker interface for resource-specific API clients. Carried mostly for documentation

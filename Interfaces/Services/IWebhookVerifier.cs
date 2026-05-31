@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Services;
+namespace LemonSqueezy.NET.Interfaces.Services;
 
 /// <summary>
 /// Verifies inbound LemonSqueezy webhook payloads against the

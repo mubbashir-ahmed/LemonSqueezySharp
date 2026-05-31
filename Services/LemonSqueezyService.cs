@@ -1,4 +1,5 @@
-using LemonSqueezy.NET.Clients.Interfaces;
+using LemonSqueezy.NET.Interfaces.Clients;
+using LemonSqueezy.NET.Interfaces.Services;
 
 namespace LemonSqueezy.NET.Services;
 
