@@ -70,7 +70,9 @@ public sealed class CustomersClient : ApiClientBase, ICustomersClient
     }
 
     /// <inheritdoc />
-    public async Task<BaseResult<Customer>> GetAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<BaseResult<Customer>> GetAsync(
+        string id,
+        CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(id))
         {
@@ -137,7 +139,7 @@ public sealed class CustomersClient : ApiClientBase, ICustomersClient
             Append(query, "filter[email]", filter.Email);
         }
 
-        var requestUri = $"{ApiEndpoints.Customers}{query.ToString()}";
+        var requestUri = $"{ApiEndpoints.Customers}{query}";
         var response = await GetJsonApiCollectionAsync<Customer>(requestUri, cancellationToken)
             .ConfigureAwait(false);
 

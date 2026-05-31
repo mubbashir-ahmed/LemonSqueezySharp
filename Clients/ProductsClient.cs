@@ -14,7 +14,9 @@ public sealed class ProductsClient : ApiClientBase, IProductsClient
     }
 
     /// <inheritdoc />
-    public async Task<BaseResult<Product>> GetAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<BaseResult<Product>> GetAsync(
+        string id,
+        CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(id))
         {
@@ -39,7 +41,7 @@ public sealed class ProductsClient : ApiClientBase, IProductsClient
             Append(query, "filter[store_id]", filter.StoreId);
         }
 
-        var requestUri = $"{ApiEndpoints.Products}{query.ToString()}";
+        var requestUri = $"{ApiEndpoints.Products}{query}";
         var response = await GetJsonApiCollectionAsync<Product>(requestUri, cancellationToken)
             .ConfigureAwait(false);
 

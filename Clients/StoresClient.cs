@@ -15,7 +15,9 @@ public sealed class StoresClient : ApiClientBase, IStoresClient
     }
 
     /// <inheritdoc />
-    public async Task<BaseResult<Store>> GetAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<BaseResult<Store>> GetAsync(
+        string id,
+        CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(id))
         {
