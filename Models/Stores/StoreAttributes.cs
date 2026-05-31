@@ -4,11 +4,8 @@ namespace LemonSqueezy.NET.Models.Stores;
 
 /// <summary>
 /// Attribute payload for a LemonSqueezy store.
+/// See https://docs.lemonsqueezy.com/api/stores.
 /// </summary>
-/// <remarks>
-/// Field set is a starter — extend as endpoints are implemented.
-/// See https://docs.lemonsqueezy.com/api/stores for the authoritative list.
-/// </remarks>
 public sealed class StoreAttributes
 {
     [JsonPropertyName("name")]
@@ -23,8 +20,32 @@ public sealed class StoreAttributes
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 
+    [JsonPropertyName("avatar_url")]
+    public string? AvatarUrl { get; set; }
+
+    [JsonPropertyName("plan")]
+    public string? Plan { get; set; }
+
+    [JsonPropertyName("country")]
+    public string? Country { get; set; }
+
+    [JsonPropertyName("country_nicename")]
+    public string? CountryNicename { get; set; }
+
     [JsonPropertyName("currency")]
     public string? Currency { get; set; }
+
+    [JsonPropertyName("total_sales")]
+    public long? TotalSales { get; set; }
+
+    [JsonPropertyName("total_revenue")]
+    public long? TotalRevenue { get; set; }
+
+    [JsonPropertyName("thirty_day_sales")]
+    public long? ThirtyDaySales { get; set; }
+
+    [JsonPropertyName("thirty_day_revenue")]
+    public long? ThirtyDayRevenue { get; set; }
 
     [JsonPropertyName("created_at")]
     public DateTimeOffset? CreatedAt { get; set; }

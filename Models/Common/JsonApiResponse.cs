@@ -5,10 +5,11 @@ namespace LemonSqueezy.NET.Models.Common;
 /// <summary>
 /// JSON:API envelope for a single-resource response.
 /// </summary>
-public sealed class JsonApiResponse<TAttributes>
+/// <typeparam name="TResource">Strongly-typed resource (typically derived from <see cref="JsonApiResource{TAttributes}"/>).</typeparam>
+public sealed class JsonApiResponse<TResource>
 {
     [JsonPropertyName("data")]
-    public JsonApiResource<TAttributes>? Data { get; set; }
+    public TResource? Data { get; set; }
 
     [JsonPropertyName("links")]
     public ResourceLinks? Links { get; set; }

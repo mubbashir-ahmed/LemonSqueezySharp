@@ -1,6 +1,7 @@
 using LemonSqueezy.NET.Clients.Base;
 using LemonSqueezy.NET.Http;
 using LemonSqueezy.NET.Interfaces.Clients;
+using LemonSqueezy.NET.Models.Common;
 using LemonSqueezy.NET.Models.Users;
 
 namespace LemonSqueezy.NET.Clients;
@@ -13,22 +14,11 @@ public sealed class UsersClient : ApiClientBase, IUsersClient
     }
 
     /// <inheritdoc />
-    public async Task<User?> GetMeAsync(CancellationToken cancellationToken = default)
+    public async Task<BaseResult<User>> GetMeAsync(CancellationToken cancellationToken = default)
     {
-        var response = await GetJsonApiAsync<User>(ApiEndpoints.Me, cancellationToken).ConfigureAwait(false);
-        return response?.Data;
-    }
+        var requestUri = $"{ApiEndpoints.Users}/me";
+        var response = await GetJsonApiAsync<User>(requestUri, cancellationToken).ConfigureAwait(false);
 
-    /// <inheritdoc />
-    public async Task<User?> GetAsync(string id, CancellationToken cancellationToken = default)
-    {
-        if (string.IsNullOrWhiteSpace(id))
-        {
-            throw new ArgumentException("User id must be provided.", nameof(id));
-        }
-
-        var response = await GetJsonApiAsync<User>($"{ApiEndpoints.Users}/{Uri.EscapeDataString(id)}", cancellationToken)
-            .ConfigureAwait(false);
-        return response?.Data;
+        return new BaseResult<User>(response?.Data, response?.Links, response?.Meta);
     }
 }

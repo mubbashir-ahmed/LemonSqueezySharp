@@ -3,9 +3,9 @@ namespace LemonSqueezy.NET.Models.Common;
 /// <summary>
 /// Strongly-typed result of a list endpoint — items plus paging cursors.
 /// </summary>
-public sealed class PagedResult<T>
+public sealed class PagedBaseResult<T>
 {
-    public PagedResult(IReadOnlyList<T> items, ResourceLinks? links, PageMeta? meta)
+    public PagedBaseResult(IReadOnlyList<T> items, ResourceLinks? links, PageMeta? meta)
     {
         Items = items;
         Links = links;

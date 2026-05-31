@@ -1,9 +1,12 @@
+using System.Globalization;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using LemonSqueezy.NET.Exceptions;
 using LemonSqueezy.NET.Interfaces.Clients.Base;
 using LemonSqueezy.NET.Models.Common;
+using LemonSqueezy.NET.Models.Requests;
 using LemonSqueezy.NET.Serialization;
 
 namespace LemonSqueezy.NET.Clients.Base;
@@ -95,6 +98,44 @@ public abstract class ApiClientBase : IApiClient
                 new LemonSqueezyRateLimitException(message, response.Headers.RetryAfter?.Delta, body, requestId),
             _ => new LemonSqueezyApiException(response.StatusCode, message, body, requestId),
         };
+    }
+
+    /// <summary>
+    /// Serialises common list parameters (<c>page[number]</c>, <c>page[size]</c>, <c>include</c>)
+    /// into a query string. Derived clients may concatenate resource-specific filters
+    /// onto the returned value.
+    /// </summary>
+    protected static string BuildListQuery(ListFilter? filter)
+    {
+        if (filter is null)
+        {
+            return string.Empty;
+        }
+
+        var builder = new StringBuilder();
+
+        Append(builder, "page[number]", filter.PageNumber?.ToString(CultureInfo.InvariantCulture));
+        Append(builder, "page[size]", filter.PageSize?.ToString(CultureInfo.InvariantCulture));
+        Append(builder, "include", filter.Include);
+
+        return builder.ToString();
+    }
+
+    /// <summary>
+    /// Appends a single <c>key=value</c> pair to <paramref name="builder"/>, URL-encoding both,
+    /// and prefixing with <c>?</c> or <c>&amp;</c> as appropriate. No-op when the value is null/empty.
+    /// </summary>
+    protected static void Append(StringBuilder builder, string key, string? value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return;
+        }
+
+        builder.Append(builder.Length == 0 ? '?' : '&');
+        builder.Append(Uri.EscapeDataString(key));
+        builder.Append('=');
+        builder.Append(Uri.EscapeDataString(value));
     }
 
     private static (string Message, IReadOnlyList<string> Errors) TryReadErrorBody(string body)

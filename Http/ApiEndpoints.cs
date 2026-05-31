@@ -6,7 +6,6 @@ namespace LemonSqueezy.NET.Http;
 internal static class ApiEndpoints
 {
     public const string Users = "users";
-    public const string Me = "users/me";
 
     public const string Stores = "stores";
     public const string Customers = "customers";
