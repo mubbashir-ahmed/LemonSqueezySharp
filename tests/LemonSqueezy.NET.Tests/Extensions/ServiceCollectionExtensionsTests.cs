@@ -1,7 +1,7 @@
-using LemonSqueezy.NET.Clients.Interfaces;
 using LemonSqueezy.NET.Configurations;
 using LemonSqueezy.NET.Extensions;
-using LemonSqueezy.NET.Services;
+using LemonSqueezy.NET.Interfaces.Clients;
+using LemonSqueezy.NET.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
