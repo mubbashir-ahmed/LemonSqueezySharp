@@ -23,7 +23,8 @@ public sealed class StoresClient : ApiClientBase, IStoresClient
         }
 
         var requestUri = $"{ApiEndpoints.Stores}/{Uri.EscapeDataString(id)}";
-        var response = await GetJsonApiAsync<Store>(requestUri, cancellationToken).ConfigureAwait(false);
+        var response = await GetJsonApiAsync<Store>(requestUri, cancellationToken)
+            .ConfigureAwait(false);
 
         return new BaseResult<Store>(response?.Data, response?.Links, response?.Meta);
     }
@@ -34,7 +35,8 @@ public sealed class StoresClient : ApiClientBase, IStoresClient
         CancellationToken cancellationToken = default)
     {
         var requestUri = ApiEndpoints.Stores + BuildListQuery(filter);
-        var response = await GetJsonApiCollectionAsync<Store>(requestUri, cancellationToken).ConfigureAwait(false);
+        var response = await GetJsonApiCollectionAsync<Store>(requestUri, cancellationToken)
+            .ConfigureAwait(false);
 
         return new PagedBaseResult<Store>(
             response?.Data ?? Array.Empty<Store>(),

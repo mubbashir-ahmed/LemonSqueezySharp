@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
@@ -20,6 +21,8 @@ namespace LemonSqueezy.NET.Clients.Base;
 public abstract class ApiClientBase : IApiClient
 {
     private const string RequestIdHeader = "x-request-id";
+    private const string JsonApiMediaType = "application/vnd.api+json";
+    private static readonly HttpMethod PatchMethod = new("PATCH");
 
     protected ApiClientBase(HttpClient httpClient)
     {
@@ -65,6 +68,55 @@ public abstract class ApiClientBase : IApiClient
     }
 
     /// <summary>
+    /// Sends a <c>POST</c> with a JSON:API body and deserialises the single-resource response.
+    /// </summary>
+    protected async Task<JsonApiResponse<TResource>?> PostJsonApiAsync<TResource, TBody>(
+        string requestUri,
+        TBody body,
+        CancellationToken cancellationToken)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Post, requestUri)
+        {
+            Content = CreateJsonApiContent(body),
+        };
+        return await SendAndReadAsync<TResource>(request, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Sends a <c>PATCH</c> with a JSON:API body and deserialises the single-resource response.
+    /// </summary>
+    protected async Task<JsonApiResponse<TResource>?> PatchJsonApiAsync<TResource, TBody>(
+        string requestUri,
+        TBody body,
+        CancellationToken cancellationToken)
+    {
+        using var request = new HttpRequestMessage(PatchMethod, requestUri)
+        {
+            Content = CreateJsonApiContent(body),
+        };
+        return await SendAndReadAsync<TResource>(request, cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task<JsonApiResponse<TResource>?> SendAndReadAsync<TResource>(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        using var response = await HttpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
+        await EnsureSuccessAsync(response, cancellationToken).ConfigureAwait(false);
+
+        return await response.Content
+            .ReadFromJsonAsync<JsonApiResponse<TResource>>(LemonSqueezyJsonOptions.Default, cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    private static JsonContent CreateJsonApiContent<TBody>(TBody body)
+    {
+        var content = JsonContent.Create(body, mediaType: null, options: LemonSqueezyJsonOptions.Default);
+        content.Headers.ContentType = new MediaTypeHeaderValue(JsonApiMediaType);
+        return content;
+    }
+
+    /// <summary>
     /// Translates a non-success HTTP response into the appropriate typed exception.
     /// </summary>
     protected static async Task EnsureSuccessAsync(HttpResponseMessage response, CancellationToken cancellationToken)
@@ -102,23 +154,31 @@ public abstract class ApiClientBase : IApiClient
 
     /// <summary>
     /// Serialises common list parameters (<c>page[number]</c>, <c>page[size]</c>, <c>include</c>)
-    /// into a query string. Derived clients may concatenate resource-specific filters
-    /// onto the returned value.
+    /// into a query string. Derived clients that need to append resource-specific filters
+    /// should call <see cref="BuildListQueryBuilder"/> instead and continue writing to the
+    /// returned <see cref="StringBuilder"/>.
     /// </summary>
     protected static string BuildListQuery(ListFilter? filter)
+        => BuildListQueryBuilder(filter).ToString();
+
+    /// <summary>
+    /// Same as <see cref="BuildListQuery"/> but returns the underlying <see cref="StringBuilder"/>
+    /// so derived clients can append additional <c>filter[...]</c> parameters via
+    /// <see cref="Append"/>.
+    /// </summary>
+    protected static StringBuilder BuildListQueryBuilder(ListFilter? filter)
     {
+        var builder = new StringBuilder();
         if (filter is null)
         {
-            return string.Empty;
+            return builder;
         }
-
-        var builder = new StringBuilder();
 
         Append(builder, "page[number]", filter.PageNumber?.ToString(CultureInfo.InvariantCulture));
         Append(builder, "page[size]", filter.PageSize?.ToString(CultureInfo.InvariantCulture));
         Append(builder, "include", filter.Include);
 
-        return builder.ToString();
+        return builder;
     }
 
     /// <summary>
