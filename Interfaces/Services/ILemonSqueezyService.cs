@@ -12,4 +12,9 @@ public interface ILemonSqueezyService
     ILemonSqueezyClient Client { get; }
 
     IWebhookVerifier WebhookVerifier { get; }
+
+    /// <summary>
+    /// Verifies and parses inbound webhooks into the strongly-typed event hierarchy.
+    /// </summary>
+    IWebhookEventParser WebhookEvents { get; }
 }

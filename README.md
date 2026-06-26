@@ -17,7 +17,7 @@
 - ✅ Single root entry point: `ILemonSqueezyClient` exposes every resource client as a property (`client.Subscriptions.GetAsync(id)`)
 - ✅ `IHttpClientFactory` + `IOptions<LemonSqueezyOptions>` integration — no static state
 - ✅ Strongly-typed exception hierarchy (401/404/422/429 each get their own type)
-- ✅ Built-in webhook HMAC-SHA256 signature verification
+- ✅ Built-in webhook HMAC-SHA256 signature verification **plus strongly-typed, pattern-matchable webhook events**
 - ✅ JSON:API envelope support out of the box (`JsonApiResponse<T>`, `JsonApiCollectionResponse<T>`, paging links)
 - ✅ Multi-targets **net10.0** and **netstandard2.0** — runs on modern .NET, .NET Core 2.0+, and .NET Framework 4.7.2+ (see [Compatibility](#compatibility))
 
@@ -112,35 +112,53 @@ Validation runs on startup via `IValidateOptions<LemonSqueezyOptions>`, so misco
 
 ## Verifying webhooks
 
-Inject `IWebhookVerifier` and validate the `X-Signature` header against the raw request body:
+### Typed events (recommended)
+
+Inject `IWebhookEventParser` and call `VerifyAndParse` — it checks the `X-Signature` header and returns a strongly-typed event you can pattern-match. Each known event carries its resource in `Data` (e.g. an `OrderCreatedEvent` exposes a typed `Order`):
 
 ```csharp
 [ApiController]
 [Route("webhooks/lemonsqueezy")]
-public class WebhookController(IWebhookVerifier verifier) : ControllerBase
+public class WebhookController(IWebhookEventParser webhooks) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Handle()
     {
         using var reader = new StreamReader(Request.Body);
         var body = await reader.ReadToEndAsync();
-
         var signature = Request.Headers["X-Signature"].ToString();
-        if (!verifier.Verify(body, signature))
+
+        if (!webhooks.TryVerifyAndParse(body, signature, out var evt))
         {
             return Unauthorized();
         }
 
-        // Parse the event and dispatch to your handler:
-        var evt = JsonSerializer.Deserialize<WebhookEvent>(body, LemonSqueezyJsonOptions.Default);
-        // switch (evt?.Meta?.EventName) { ... }
+        switch (evt)
+        {
+            case OrderCreatedEvent e:
+                await FulfillAsync(e.Data!);                 // e.Data is an Order
+                break;
+            case SubscriptionUpdatedEvent e:
+                await SyncAsync(e.Data!);                    // e.Data is a Subscription
+                break;
+            case SubscriptionPaymentFailedEvent e:
+                await DunAsync(e.Data!);                     // e.Data is a SubscriptionInvoice
+                break;
+            case UnknownWebhookEvent e:
+                _logger.LogInformation("Unhandled event {Name}", e.EventName);
+                break;
+        }
 
         return Ok();
     }
 }
 ```
 
-The verifier uses constant-time comparison (`CryptographicOperations.FixedTimeEquals` on net10.0; manual fixed-time loop on netstandard2.0).
+`VerifyAndParse` is the throwing variant (it raises `LemonSqueezyWebhookVerificationException` on a bad signature); `TryVerifyAndParse` returns `false` instead. Custom data attached at checkout is available on any event via `evt.GetCustomData<T>()`. Event-name constants live in `WebhookEventNames`.
+
+### Low-level verification
+
+If you only need to authenticate the payload and parse it yourself, inject `IWebhookVerifier` and call `Verify(body, signature)`. It uses constant-time comparison (`CryptographicOperations.FixedTimeEquals` on net10.0; a manual fixed-time loop on netstandard2.0).
 
 ---
 
@@ -195,12 +213,15 @@ LemonSqueezy.NET/
 ├── Models/                       DTOs grouped by resource
 │   ├── Common/                   JSON:API envelopes (Resource, Response, Links, Meta, Error)
 │   ├── Requests/                 shared request shapes (ListFilter, etc.)
+│   ├── Webhooks/Events/          typed webhook event hierarchy + event-name catalogue
 │   └── <Resource>/               per-resource attribute models
 │
 ├── Services/                     higher-level helpers
 │   ├── WebhookVerifier.cs        HMAC-SHA256 verification
+│   ├── WebhookEventParser.cs     verify + parse into typed events
 │   └── LemonSqueezyService.cs    optional façade combining client + verifier
 │
+├── Compatibility/                netstandard2.0 polyfills (IsExternalInit)
 ├── Exceptions/                   typed exception hierarchy
 ├── Extensions/                   DI + HttpClient + HttpResponseMessage helpers
 ├── Http/                         DelegatingHandlers (auth, user-agent), endpoint catalogue
@@ -247,7 +268,7 @@ Every documented LemonSqueezy resource has a fully implemented, tested client. T
 - [x] Implement clients for every documented resource (with tests)
 - [x] Multi-target verification across net10.0, net48, and net472
 - [ ] Add Polly-based resilience extension (`AddStandardResilienceHandler` integration)
-- [ ] Strongly-typed webhook event payloads (one record per event name)
+- [x] Strongly-typed webhook event payloads (one record per event name)
 - [ ] Sample apps: ASP.NET Core webhook handler, console subscription explorer
 - [ ] CI workflow + automated NuGet publishing
 

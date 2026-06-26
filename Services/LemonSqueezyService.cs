@@ -6,13 +6,19 @@ namespace LemonSqueezy.NET.Services;
 /// <inheritdoc cref="ILemonSqueezyService"/>
 public sealed class LemonSqueezyService : ILemonSqueezyService
 {
-    public LemonSqueezyService(ILemonSqueezyClient client, IWebhookVerifier webhookVerifier)
+    public LemonSqueezyService(
+        ILemonSqueezyClient client,
+        IWebhookVerifier webhookVerifier,
+        IWebhookEventParser webhookEvents)
     {
         Client = client ?? throw new ArgumentNullException(nameof(client));
         WebhookVerifier = webhookVerifier ?? throw new ArgumentNullException(nameof(webhookVerifier));
+        WebhookEvents = webhookEvents ?? throw new ArgumentNullException(nameof(webhookEvents));
     }
 
     public ILemonSqueezyClient Client { get; }
 
     public IWebhookVerifier WebhookVerifier { get; }
+
+    public IWebhookEventParser WebhookEvents { get; }
 }

@@ -75,6 +75,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<LemonSqueezyUserAgentHandler>();
 
         services.AddSingleton<IWebhookVerifier, WebhookVerifier>();
+        services.AddSingleton<IWebhookEventParser, WebhookEventParser>();
         services.AddSingleton<ILemonSqueezyService, LemonSqueezyService>();
         services.AddSingleton<ILemonSqueezyClient, LemonSqueezyClient>();
 
