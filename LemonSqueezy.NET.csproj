@@ -20,7 +20,8 @@
     <PackageTags>lemonsqueezy;payments;subscriptions;sdk;dotnet</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/your-org/LemonSqueezy.NET</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mubbashir-ahmed/LemonSqueezy.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mubbashir-ahmed/LemonSqueezy.NET</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
