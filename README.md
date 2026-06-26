@@ -3,11 +3,12 @@
 [![NuGet](https://img.shields.io/nuget/v/LemonSqueezy.NET.svg)](https://www.nuget.org/packages/LemonSqueezy.NET)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/LemonSqueezy.NET.svg)](https://www.nuget.org/packages/LemonSqueezy.NET)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/mubbashir-ahmed/LemonSqueezy.NET/actions/workflows/ci.yml/badge.svg)](https://github.com/mubbashir-ahmed/LemonSqueezy.NET/actions/workflows/ci.yml)
 [![Target Frameworks](https://img.shields.io/badge/targets-net10.0%20%7C%20netstandard2.0-512BD4)](LemonSqueezy.NET.csproj)
 
 > Unofficial .NET SDK for the [LemonSqueezy API](https://docs.lemonsqueezy.com/api). Strongly-typed clients, `IHttpClientFactory`-based, DI-first, with built-in webhook signature verification.
 
-> **Status — pre-1.0 (`0.1.0`).** Every documented LemonSqueezy resource is implemented and covered by tests. The public API may still change before 1.0. See [Roadmap](#roadmap).
+> **Status — pre-1.0 (`0.1.0`).** Every documented LemonSqueezy resource is implemented and covered by tests. The public API may still change before 1.0.
 
 ---
 
@@ -284,19 +285,6 @@ Every documented LemonSqueezy resource has a fully implemented, tested client. T
 | Webhooks              | `IWebhooksClient`             | `GetAsync`, `ListAsync`, `CreateAsync`, `UpdateAsync`, `DeleteAsync` |
 | Affiliates            | `IAffiliatesClient`           | `GetAsync`, `ListAsync`                                     |
 | Licenses (license API) | `ILicensesClient`            | `ActivateAsync`, `DeactivateAsync`, `ValidateAsync`        |
-
----
-
-## Roadmap
-
-- [x] Implement clients for every documented resource (with tests)
-- [x] Multi-target verification across net10.0, net48, and net472
-- [x] Add Polly-based resilience extension (`AddStandardResilienceHandler` integration)
-- [x] Strongly-typed webhook event payloads (one record per event name)
-- [ ] Sample apps: ASP.NET Core webhook handler, console subscription explorer
-- [ ] CI workflow + automated NuGet publishing
-
-Pull requests are very welcome.
 
 ---
 
