@@ -18,6 +18,36 @@ namespace LemonSqueezy.NET.Extensions;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
+    /// The <see cref="HttpClient"/> names under which the SDK registers its typed resource
+    /// clients (a typed client's name is its interface name). Kept in sync with the
+    /// registrations below and consumed by <see cref="ResilienceExtensions"/>.
+    /// </summary>
+    internal static readonly string[] ResourceClientNames =
+    {
+        nameof(ICheckoutsClient),
+        nameof(ICustomersClient),
+        nameof(IDiscountRedemptionsClient),
+        nameof(IDiscountsClient),
+        nameof(IFilesClient),
+        nameof(ILicenseKeyInstancesClient),
+        nameof(ILicenseKeysClient),
+        nameof(IOrderItemsClient),
+        nameof(IOrdersClient),
+        nameof(IPricesClient),
+        nameof(IProductsClient),
+        nameof(IStoresClient),
+        nameof(ISubscriptionInvoicesClient),
+        nameof(ISubscriptionItemsClient),
+        nameof(ISubscriptionsClient),
+        nameof(IUsageRecordsClient),
+        nameof(IUsersClient),
+        nameof(IVariantsClient),
+        nameof(IWebhooksClient),
+        nameof(IAffiliatesClient),
+        nameof(ILicensesClient),
+    };
+
+    /// <summary>
     /// Registers the LemonSqueezy SDK with options bound from <see cref="IConfiguration"/>.
     /// </summary>
     public static IHttpClientBuilder AddLemonSqueezy(

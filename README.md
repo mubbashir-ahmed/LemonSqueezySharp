@@ -19,6 +19,7 @@
 - ✅ Strongly-typed exception hierarchy (401/404/422/429 each get their own type)
 - ✅ Built-in webhook HMAC-SHA256 signature verification **plus strongly-typed, pattern-matchable webhook events**
 - ✅ JSON:API envelope support out of the box (`JsonApiResponse<T>`, `JsonApiCollectionResponse<T>`, paging links)
+- ✅ Optional one-call Polly resilience (`AddLemonSqueezyResilience()`) — retry, circuit breaker, timeouts
 - ✅ Multi-targets **net10.0** and **netstandard2.0** — runs on modern .NET, .NET Core 2.0+, and .NET Framework 4.7.2+ (see [Compatibility](#compatibility))
 
 ---
@@ -107,6 +108,29 @@ All options live on `LemonSqueezyOptions` (binding section: `LemonSqueezy`):
 | `UserAgent`             | `string?`       | `LemonSqueezy.NET/{version}`             | Override the outbound `User-Agent`.               |
 
 Validation runs on startup via `IValidateOptions<LemonSqueezyOptions>`, so misconfigurations fail fast.
+
+---
+
+## Resilience (optional)
+
+Call `AddLemonSqueezyResilience()` after `AddLemonSqueezy(...)` to wrap **only** the SDK's HTTP clients in the standard Polly pipeline — retry with exponential backoff + jitter, a circuit breaker, total-request and per-attempt timeouts, and a concurrency limiter. It builds on [`Microsoft.Extensions.Http.Resilience`](https://learn.microsoft.com/dotnet/core/resilience/http-resilience):
+
+```csharp
+services
+    .AddLemonSqueezy(options => options.ApiKey = "lsq_...")
+    .AddLemonSqueezyResilience();
+
+// …or tune the standard pipeline:
+services.AddLemonSqueezyResilience(options =>
+{
+    options.Retry.MaxRetryAttempts = 5;
+    options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(15);
+});
+```
+
+It scopes resilience to the LemonSqueezy clients (it does not touch other `HttpClient`s in your app). LemonSqueezy rate-limits with `429` + `Retry-After`, which the retry strategy honors automatically — so transient `429`/`5xx`/network failures are retried before surfacing as exceptions.
+
+> The standard pipeline only retries idempotent requests by default, so it won't blindly re-issue writes like `CreateAsync`.
 
 ---
 
@@ -267,7 +291,7 @@ Every documented LemonSqueezy resource has a fully implemented, tested client. T
 
 - [x] Implement clients for every documented resource (with tests)
 - [x] Multi-target verification across net10.0, net48, and net472
-- [ ] Add Polly-based resilience extension (`AddStandardResilienceHandler` integration)
+- [x] Add Polly-based resilience extension (`AddStandardResilienceHandler` integration)
 - [x] Strongly-typed webhook event payloads (one record per event name)
 - [ ] Sample apps: ASP.NET Core webhook handler, console subscription explorer
 - [ ] CI workflow + automated NuGet publishing
