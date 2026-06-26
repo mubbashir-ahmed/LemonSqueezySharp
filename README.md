@@ -7,7 +7,7 @@
 
 > Unofficial .NET SDK for the [LemonSqueezy API](https://docs.lemonsqueezy.com/api). Strongly-typed clients, `IHttpClientFactory`-based, DI-first, with built-in webhook signature verification.
 
-> ⚠️ **Status — early scaffolding.** The infrastructure (DI, options, HTTP pipeline, exceptions, JSON:API envelopes, webhook verification) is in place. Resource endpoint methods (`GetAsync`, `ListAsync`, `CreateAsync`, …) are still being filled in resource-by-resource. See [Roadmap](#roadmap).
+> **Status — pre-1.0 (`0.1.0`).** Every documented LemonSqueezy resource is implemented and covered by tests. The public API may still change before 1.0. See [Roadmap](#roadmap).
 
 ---
 
@@ -19,7 +19,7 @@
 - ✅ Strongly-typed exception hierarchy (401/404/422/429 each get their own type)
 - ✅ Built-in webhook HMAC-SHA256 signature verification
 - ✅ JSON:API envelope support out of the box (`JsonApiResponse<T>`, `JsonApiCollectionResponse<T>`, paging links)
-- ✅ Multi-targets **net10.0** and **netstandard2.0**
+- ✅ Multi-targets **net10.0** and **netstandard2.0** — runs on modern .NET, .NET Core 2.0+, and .NET Framework 4.7.2+ (see [Compatibility](#compatibility))
 
 ---
 
@@ -28,6 +28,20 @@
 ```bash
 dotnet add package LemonSqueezy.NET
 ```
+
+---
+
+## Compatibility
+
+The library multi-targets **net10.0** and **netstandard2.0**. The `netstandard2.0` target is what gives it broad reach:
+
+| Platform                 | Supported versions                       |
+| ------------------------ | ---------------------------------------- |
+| .NET / .NET Core         | .NET Core 2.0+, .NET 5, 6, 7, 8, 9, 10   |
+| .NET Framework           | 4.7.2+                                    |
+| Mono / Xamarin / Unity   | any target supporting .NET Standard 2.0  |
+
+The test suite runs against **net10.0**, **net48**, and **net472**, so the netstandard2.0 / .NET Framework path is verified rather than merely declared. **4.7.2 is the documented minimum floor** — older 4.x versions are technically in-spec for .NET Standard 2.0 but are not tested and may need binding redirects for the modern `System.Text.Json` / `Microsoft.Extensions.*` dependencies.
 
 ---
 
@@ -171,10 +185,12 @@ LemonSqueezy.NET/
 │
 ├── Clients/                      resource client implementations
 │   ├── Base/                     ApiClientBase (HTTP plumbing)
-│   ├── Interfaces/               one interface per resource
-│   │   └── Base/                 IApiClient (marker)
 │   ├── LemonSqueezyClient.cs     root façade implementation
 │   └── <Resource>Client.cs       per-resource implementations
+│
+├── Interfaces/                   public abstractions
+│   ├── Clients/                  one interface per resource (+ Base/ marker)
+│   └── Services/                 IWebhookVerifier and friends
 │
 ├── Models/                       DTOs grouped by resource
 │   ├── Common/                   JSON:API envelopes (Resource, Response, Links, Meta, Error)
@@ -191,63 +207,67 @@ LemonSqueezy.NET/
 ├── Configurations/               LemonSqueezyOptions + validator
 ├── Serialization/                JSON options, UnixDateTimeConverter
 │
-└── tests/LemonSqueezy.NET.Tests/ xUnit + FluentAssertions + NSubstitute
+└── tests/LemonSqueezy.NET.Tests/ xUnit + FluentAssertions + NSubstitute (net10.0 / net48 / net472)
 ```
 
 ---
 
 ## Supported resources
 
-The SDK scaffolds clients for every documented LemonSqueezy resource:
+Every documented LemonSqueezy resource has a fully implemented, tested client. The root `ILemonSqueezyClient` exposes each one as a property (e.g. `client.Subscriptions`, `client.Checkouts`):
 
-| Resource              | Client interface              | Status      |
-| --------------------- | ----------------------------- | ----------- |
-| Users                 | `IUsersClient`                | 🚧 scaffold |
-| Stores                | `IStoresClient`               | 🚧 scaffold |
-| Customers             | `ICustomersClient`            | 🚧 scaffold |
-| Products              | `IProductsClient`             | 🚧 scaffold |
-| Variants              | `IVariantsClient`             | 🚧 scaffold |
-| Prices                | `IPricesClient`               | 🚧 scaffold |
-| Files                 | `IFilesClient`                | 🚧 scaffold |
-| Orders                | `IOrdersClient`               | 🚧 scaffold |
-| Order items           | `IOrderItemsClient`           | 🚧 scaffold |
-| Subscriptions         | `ISubscriptionsClient`        | 🚧 scaffold |
-| Subscription invoices | `ISubscriptionInvoicesClient` | 🚧 scaffold |
-| Subscription items    | `ISubscriptionItemsClient`    | 🚧 scaffold |
-| Usage records         | `IUsageRecordsClient`         | 🚧 scaffold |
-| Discounts             | `IDiscountsClient`            | 🚧 scaffold |
-| Discount redemptions  | `IDiscountRedemptionsClient`  | 🚧 scaffold |
-| License keys          | `ILicenseKeysClient`          | 🚧 scaffold |
-| License key instances | `ILicenseKeyInstancesClient`  | 🚧 scaffold |
-| Checkouts             | `ICheckoutsClient`            | 🚧 scaffold |
-| Webhooks              | `IWebhooksClient`             | 🚧 scaffold |
+| Resource              | Client interface              | Methods                                                     |
+| --------------------- | ----------------------------- | ---------------------------------------------------------- |
+| Users                 | `IUsersClient`                | `GetMeAsync`                                                |
+| Stores                | `IStoresClient`               | `GetAsync`, `ListAsync`                                     |
+| Customers             | `ICustomersClient`            | `GetAsync`, `ListAsync`, `CreateAsync`, `UpdateAsync`       |
+| Products              | `IProductsClient`             | `GetAsync`, `ListAsync`                                     |
+| Variants              | `IVariantsClient`             | `GetAsync`, `ListAsync`                                     |
+| Prices                | `IPricesClient`               | `GetAsync`, `ListAsync`                                     |
+| Files                 | `IFilesClient`                | `GetAsync`, `ListAsync`                                     |
+| Orders                | `IOrdersClient`               | `GetAsync`, `ListAsync`, `GenerateInvoiceAsync`, `RefundAsync` |
+| Order items           | `IOrderItemsClient`           | `GetAsync`, `ListAsync`                                     |
+| Subscriptions         | `ISubscriptionsClient`        | `GetAsync`, `ListAsync`, `UpdateAsync`, `CancelAsync`       |
+| Subscription invoices | `ISubscriptionInvoicesClient` | `GetAsync`, `ListAsync`, `GenerateInvoiceAsync`, `RefundAsync` |
+| Subscription items    | `ISubscriptionItemsClient`    | `GetAsync`, `ListAsync`, `UpdateAsync`, `GetCurrentUsageAsync` |
+| Usage records         | `IUsageRecordsClient`         | `GetAsync`, `ListAsync`, `CreateAsync`                      |
+| Discounts             | `IDiscountsClient`            | `GetAsync`, `ListAsync`, `CreateAsync`, `DeleteAsync`       |
+| Discount redemptions  | `IDiscountRedemptionsClient`  | `GetAsync`, `ListAsync`                                     |
+| License keys          | `ILicenseKeysClient`          | `GetAsync`, `ListAsync`, `UpdateAsync`                      |
+| License key instances | `ILicenseKeyInstancesClient`  | `GetAsync`, `ListAsync`                                     |
+| Checkouts             | `ICheckoutsClient`            | `GetAsync`, `ListAsync`, `CreateAsync`                      |
+| Webhooks              | `IWebhooksClient`             | `GetAsync`, `ListAsync`, `CreateAsync`, `UpdateAsync`, `DeleteAsync` |
+| Affiliates            | `IAffiliatesClient`           | `GetAsync`, `ListAsync`                                     |
+| Licenses (license API) | `ILicensesClient`            | `ActivateAsync`, `DeactivateAsync`, `ValidateAsync`        |
 
 ---
 
 ## Roadmap
 
-- [ ] Implement `ISubscriptionsClient` endpoints (highest-value first target)
-- [ ] Implement `ICustomersClient`, `IOrdersClient`, `ICheckoutsClient`
-- [ ] Implement the remaining resource clients
+- [x] Implement clients for every documented resource (with tests)
+- [x] Multi-target verification across net10.0, net48, and net472
 - [ ] Add Polly-based resilience extension (`AddStandardResilienceHandler` integration)
 - [ ] Strongly-typed webhook event payloads (one record per event name)
 - [ ] Sample apps: ASP.NET Core webhook handler, console subscription explorer
 - [ ] CI workflow + automated NuGet publishing
 
-Pull requests are very welcome — pick a resource from the table and open a PR.
+Pull requests are very welcome.
 
 ---
 
 ## Development
 
-Requirements: .NET 10 SDK.
+Requirements: .NET 10 SDK. The test project multi-targets **net10.0**, **net48**, and **net472**; the two .NET Framework targets only execute on Windows (with the .NET Framework 4.7.2/4.8 developer packs installed). On non-Windows hosts only the net10.0 target runs.
 
 ```bash
 # Restore + build
 dotnet build
 
-# Run the tests
+# Run the tests (all target frameworks)
 dotnet test
+
+# Run only the modern .NET target
+dotnet test -f net10.0
 ```
 
 The repository uses `Directory.Build.props`, `.editorconfig`, and `TreatWarningsAsErrors` — please run `dotnet build` and `dotnet test` before submitting a PR.
