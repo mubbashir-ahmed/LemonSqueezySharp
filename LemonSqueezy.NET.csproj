@@ -15,7 +15,8 @@
   <PropertyGroup Label="Package">
     <PackageId>LemonSqueezy.NET</PackageId>
     <Version>0.1.0</Version>
-    <Authors>LemonSqueezy.NET contributors</Authors>
+    <Authors>Mubbashir Ahmed</Authors>
+    <Copyright>Copyright (c) 2026 Mubbashir Ahmed</Copyright>
     <Description>Unofficial .NET SDK for the LemonSqueezy API.</Description>
     <PackageTags>lemonsqueezy;payments;subscriptions;sdk;dotnet</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
