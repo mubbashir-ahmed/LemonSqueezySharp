@@ -1,0 +1,80 @@
+name: Publish
+
+# Publishes LemonSqueezy.NET to NuGet.org.
+#
+# Triggers:
+#   * Publishing a GitHub Release whose tag is the version (e.g. tag "v0.2.0").
+#   * Manual run (workflow_dispatch) with an explicit version — useful for a dry run,
+#     since the actual push only happens when the NUGET_API_KEY secret is configured.
+#
+# Prerequisites before this can publish:
+#   1. Own the "LemonSqueezy.NET" package id on nuget.org.
+#   2. Add a repository secret named NUGET_API_KEY with a nuget.org API key.
+# Until the secret exists, the workflow still builds, tests and packs (and uploads the
+# .nupkg as a build artifact), but skips the push.
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version to build (e.g. 0.2.0)'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    env:
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Resolve version
+        id: version
+        shell: pwsh
+        run: |
+          if ('${{ github.event_name }}' -eq 'release') {
+            $v = '${{ github.event.release.tag_name }}'.TrimStart('v')
+          } else {
+            $v = '${{ github.event.inputs.version }}'
+          }
+          if ([string]::IsNullOrWhiteSpace($v)) { throw 'Could not resolve a version.' }
+          "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          Write-Host "Publishing version $v"
+
+      # Build/test the test project (not the whole solution) so the manual harness under
+      # samples/ is excluded. It references the library, so the -p:Version global property
+      # still flows to it and the Release output is what the Pack step reuses (--no-build).
+      - name: Restore
+        run: dotnet restore tests/LemonSqueezy.NET.Tests/LemonSqueezy.NET.Tests.csproj
+
+      - name: Build
+        run: dotnet build tests/LemonSqueezy.NET.Tests/LemonSqueezy.NET.Tests.csproj --configuration Release --no-restore -p:Version=${{ steps.version.outputs.version }}
+
+      - name: Test
+        run: dotnet test tests/LemonSqueezy.NET.Tests/LemonSqueezy.NET.Tests.csproj --configuration Release --no-build
+
+      - name: Pack
+        run: dotnet pack LemonSqueezy.NET.csproj --configuration Release --no-build -p:Version=${{ steps.version.outputs.version }} --output artifacts
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: artifacts/*.*nupkg
+
+      - name: Push to NuGet.org
+        if: ${{ env.NUGET_API_KEY != '' }}
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
