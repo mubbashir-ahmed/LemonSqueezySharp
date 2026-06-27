@@ -1,17 +1,19 @@
 name: Publish
 
-# Publishes LemonSqueezy.NET to NuGet.org.
+# Publishes LemonSqueezy.NET to NuGet.org using Trusted Publishing (OIDC) — no long-lived
+# API key is stored in GitHub. The NuGet/login action exchanges the GitHub Actions OIDC
+# token for a short-lived NuGet API key at push time.
 #
 # Triggers:
-#   * Publishing a GitHub Release whose tag is the version (e.g. tag "v0.2.0").
-#   * Manual run (workflow_dispatch) with an explicit version — useful for a dry run,
-#     since the actual push only happens when the NUGET_API_KEY secret is configured.
+#   * Publishing a GitHub Release whose tag is the version (e.g. tag "v0.2.0") — this PUSHES.
+#   * Manual run (workflow_dispatch) with an explicit version — always a DRY RUN: it builds,
+#     tests, packs and uploads the .nupkg artifact, but never pushes.
 #
-# Prerequisites before this can publish:
-#   1. Own the "LemonSqueezy.NET" package id on nuget.org.
-#   2. Add a repository secret named NUGET_API_KEY with a nuget.org API key.
-# Until the secret exists, the workflow still builds, tests and packs (and uploads the
-# .nupkg as a build artifact), but skips the push.
+# Prerequisites before a release can publish:
+#   1. Create a Trusted Publishing policy on nuget.org for this repo + this workflow file,
+#      scoped to the "LemonSqueezy.NET" package (Account -> Trusted Publishing).
+#   2. Add a repository variable NUGET_USER with your nuget.org username (Settings ->
+#      Secrets and variables -> Actions -> Variables).
 
 on:
   release:
@@ -24,13 +26,11 @@ on:
 
 permissions:
   contents: read
+  id-token: write   # required for NuGet Trusted Publishing (OIDC token exchange)
 
 jobs:
   publish:
     runs-on: windows-latest
-
-    env:
-      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
     steps:
       - name: Checkout
@@ -75,6 +75,15 @@ jobs:
           name: nuget-packages
           path: artifacts/*.*nupkg
 
+      # Trusted Publishing: exchange the GitHub OIDC token for a short-lived NuGet API key.
+      # Only runs for real releases; manual dispatch stays a dry run (no login, no push).
+      - name: NuGet login (Trusted Publishing)
+        if: ${{ github.event_name == 'release' }}
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ${{ vars.NUGET_USER }}
+
       - name: Push to NuGet.org
-        if: ${{ env.NUGET_API_KEY != '' }}
-        run: dotnet nuget push "artifacts/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+        if: ${{ github.event_name == 'release' }}
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
