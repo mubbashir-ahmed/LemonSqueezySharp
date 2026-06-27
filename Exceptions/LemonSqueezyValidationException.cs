@@ -8,6 +8,11 @@ namespace LemonSqueezy.NET.Exceptions;
 /// </summary>
 public sealed class LemonSqueezyValidationException : LemonSqueezyApiException
 {
+    /// <summary>Initializes a new instance of the <see cref="LemonSqueezyValidationException"/> class.</summary>
+    /// <param name="message">The message that describes the error.</param>
+    /// <param name="errors">The human-readable validation error messages returned by the API.</param>
+    /// <param name="rawResponseBody">The raw response body, preserved for diagnostics.</param>
+    /// <param name="requestId">The optional request correlation id echoed by the server.</param>
     public LemonSqueezyValidationException(
         string message,
         IReadOnlyList<string>? errors = null,

@@ -13,6 +13,7 @@ public sealed class WebhooksClient : ApiClientBase, IWebhooksClient
     private const string StoreRelationship = "store";
     private const string StoreResourceType = "stores";
 
+    /// <summary>Initializes a new instance of the <see cref="WebhooksClient"/> class.</summary>
     public WebhooksClient(HttpClient httpClient) : base(httpClient)
     {
     }

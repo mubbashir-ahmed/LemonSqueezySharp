@@ -8,15 +8,19 @@ namespace LemonSqueezy.NET.Models.Affiliates;
 /// </summary>
 public sealed class AffiliateAttributes
 {
+    /// <summary>Identifier of the store the affiliate belongs to (<c>store_id</c>).</summary>
     [JsonPropertyName("store_id")]
     public long? StoreId { get; set; }
 
+    /// <summary>Identifier of the user associated with the affiliate (<c>user_id</c>).</summary>
     [JsonPropertyName("user_id")]
     public long? UserId { get; set; }
 
+    /// <summary>Name of the user associated with the affiliate (<c>user_name</c>).</summary>
     [JsonPropertyName("user_name")]
     public string? UserName { get; set; }
 
+    /// <summary>Email address of the user associated with the affiliate (<c>user_email</c>).</summary>
     [JsonPropertyName("user_email")]
     public string? UserEmail { get; set; }
 
@@ -49,9 +53,11 @@ public sealed class AffiliateAttributes
     [JsonPropertyName("unpaid_earnings")]
     public long? UnpaidEarnings { get; set; }
 
+    /// <summary>Date and time the affiliate was created (<c>created_at</c>).</summary>
     [JsonPropertyName("created_at")]
     public DateTimeOffset? CreatedAt { get; set; }
 
+    /// <summary>Date and time the affiliate was last updated (<c>updated_at</c>).</summary>
     [JsonPropertyName("updated_at")]
     public DateTimeOffset? UpdatedAt { get; set; }
 }

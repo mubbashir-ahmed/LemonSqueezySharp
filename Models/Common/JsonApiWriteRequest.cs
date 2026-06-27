@@ -8,6 +8,9 @@ namespace LemonSqueezy.NET.Models.Common;
 /// <typeparam name="TAttributes">Strongly-typed resource attributes payload.</typeparam>
 public sealed class JsonApiWriteRequest<TAttributes>
 {
+    /// <summary>
+    /// The JSON:API <c>data</c> block carrying the resource being written.
+    /// </summary>
     [JsonPropertyName("data")]
     public JsonApiWriteData<TAttributes> Data { get; set; } = new();
 }

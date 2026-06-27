@@ -19,11 +19,13 @@ public sealed class WebhookEventParser : IWebhookEventParser
 {
     private readonly IWebhookVerifier _verifier;
 
+    /// <summary>Initializes a new instance of the <see cref="WebhookEventParser"/> class.</summary>
     public WebhookEventParser(IWebhookVerifier verifier)
     {
         _verifier = verifier ?? throw new ArgumentNullException(nameof(verifier));
     }
 
+    /// <inheritdoc />
     public LemonSqueezyWebhookEvent Parse(string rawBody)
     {
         if (rawBody is null)
@@ -82,6 +84,7 @@ public sealed class WebhookEventParser : IWebhookEventParser
         };
     }
 
+    /// <inheritdoc />
     public LemonSqueezyWebhookEvent VerifyAndParse(string rawBody, string signatureHeader)
     {
         if (rawBody is null)
@@ -97,6 +100,7 @@ public sealed class WebhookEventParser : IWebhookEventParser
         return Parse(rawBody);
     }
 
+    /// <inheritdoc />
     public bool TryVerifyAndParse(string rawBody, string signatureHeader, out LemonSqueezyWebhookEvent? webhookEvent)
     {
         webhookEvent = null;

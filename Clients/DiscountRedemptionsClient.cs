@@ -9,6 +9,7 @@ namespace LemonSqueezy.NET.Clients;
 /// <inheritdoc cref="IDiscountRedemptionsClient"/>
 public sealed class DiscountRedemptionsClient : ApiClientBase, IDiscountRedemptionsClient
 {
+    /// <summary>Initializes a new instance of the <see cref="DiscountRedemptionsClient"/> class.</summary>
     public DiscountRedemptionsClient(HttpClient httpClient) : base(httpClient)
     {
     }

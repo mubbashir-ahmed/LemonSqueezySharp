@@ -10,6 +10,7 @@ namespace LemonSqueezy.NET.Clients;
 /// <inheritdoc cref="IFilesClient"/>
 public sealed class FilesClient : ApiClientBase, IFilesClient
 {
+    /// <summary>Initializes a new instance of the <see cref="FilesClient"/> class.</summary>
     public FilesClient(HttpClient httpClient) : base(httpClient)
     {
     }

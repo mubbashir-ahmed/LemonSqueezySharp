@@ -11,11 +11,13 @@ public sealed class WebhookVerifier : IWebhookVerifier
 {
     private readonly IOptionsMonitor<LemonSqueezyOptions> _options;
 
+    /// <summary>Initializes a new instance of the <see cref="WebhookVerifier"/> class.</summary>
     public WebhookVerifier(IOptionsMonitor<LemonSqueezyOptions> options)
     {
         _options = options ?? throw new ArgumentNullException(nameof(options));
     }
 
+    /// <inheritdoc />
     public bool Verify(string rawBody, string signatureHeader)
     {
         if (rawBody is null)
@@ -26,6 +28,7 @@ public sealed class WebhookVerifier : IWebhookVerifier
         return Verify(Encoding.UTF8.GetBytes(rawBody), signatureHeader);
     }
 
+    /// <inheritdoc />
     public bool Verify(ReadOnlySpan<byte> rawBody, string signatureHeader)
     {
         if (string.IsNullOrWhiteSpace(signatureHeader))

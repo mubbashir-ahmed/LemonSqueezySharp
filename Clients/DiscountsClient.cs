@@ -13,6 +13,7 @@ public sealed class DiscountsClient : ApiClientBase, IDiscountsClient
     private const string StoreRelationship = "store";
     private const string StoreResourceType = "stores";
 
+    /// <summary>Initializes a new instance of the <see cref="DiscountsClient"/> class.</summary>
     public DiscountsClient(HttpClient httpClient) : base(httpClient)
     {
     }

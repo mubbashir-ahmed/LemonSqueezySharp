@@ -13,6 +13,7 @@ public sealed class SubscriptionInvoicesClient : ApiClientBase, ISubscriptionInv
 {
     private const string ResourceType = "subscription-invoices";
 
+    /// <summary>Initializes a new instance of the <see cref="SubscriptionInvoicesClient"/> class.</summary>
     public SubscriptionInvoicesClient(HttpClient httpClient) : base(httpClient)
     {
     }

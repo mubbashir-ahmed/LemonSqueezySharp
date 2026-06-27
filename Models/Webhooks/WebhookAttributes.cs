@@ -8,6 +8,7 @@ namespace LemonSqueezy.NET.Models.Webhooks;
 /// </summary>
 public sealed class WebhookAttributes
 {
+    /// <summary>Identifier of the store this webhook belongs to.</summary>
     [JsonPropertyName("store_id")]
     public long? StoreId { get; set; }
 
@@ -22,15 +23,19 @@ public sealed class WebhookAttributes
     [JsonPropertyName("events")]
     public IReadOnlyList<string>? Events { get; set; }
 
+    /// <summary>When an event was last dispatched to this webhook, if ever.</summary>
     [JsonPropertyName("last_sent_at")]
     public DateTimeOffset? LastSentAt { get; set; }
 
+    /// <summary>Whether this webhook was created in test mode.</summary>
     [JsonPropertyName("test_mode")]
     public bool? TestMode { get; set; }
 
+    /// <summary>When this webhook was created.</summary>
     [JsonPropertyName("created_at")]
     public DateTimeOffset? CreatedAt { get; set; }
 
+    /// <summary>When this webhook was last updated.</summary>
     [JsonPropertyName("updated_at")]
     public DateTimeOffset? UpdatedAt { get; set; }
 }

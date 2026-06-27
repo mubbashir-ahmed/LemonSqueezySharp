@@ -9,6 +9,7 @@ namespace LemonSqueezy.NET.Clients;
 /// <inheritdoc cref="IAffiliatesClient"/>
 public sealed class AffiliatesClient : ApiClientBase, IAffiliatesClient
 {
+    /// <summary>Initializes a new instance of the <see cref="AffiliatesClient"/> class.</summary>
     public AffiliatesClient(HttpClient httpClient) : base(httpClient)
     {
     }

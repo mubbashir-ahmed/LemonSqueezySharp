@@ -9,6 +9,7 @@ namespace LemonSqueezy.NET.Clients;
 /// <inheritdoc cref="IVariantsClient"/>
 public sealed class VariantsClient : ApiClientBase, IVariantsClient
 {
+    /// <summary>Initializes a new instance of the <see cref="VariantsClient"/> class.</summary>
     public VariantsClient(HttpClient httpClient) : base(httpClient)
     {
     }

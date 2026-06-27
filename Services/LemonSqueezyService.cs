@@ -16,9 +16,12 @@ public sealed class LemonSqueezyService : ILemonSqueezyService
         WebhookEvents = webhookEvents ?? throw new ArgumentNullException(nameof(webhookEvents));
     }
 
+    /// <inheritdoc />
     public ILemonSqueezyClient Client { get; }
 
+    /// <inheritdoc />
     public IWebhookVerifier WebhookVerifier { get; }
 
+    /// <inheritdoc />
     public IWebhookEventParser WebhookEvents { get; }
 }

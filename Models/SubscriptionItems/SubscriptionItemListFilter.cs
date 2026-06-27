@@ -7,6 +7,13 @@ namespace LemonSqueezy.NET.Models.SubscriptionItems;
 /// </summary>
 public sealed class SubscriptionItemListFilter : ListFilter
 {
+    /// <summary>
+    /// Filter subscription items by subscription id (<c>filter[subscription_id]</c>).
+    /// </summary>
     public string? SubscriptionId { get; set; }
+
+    /// <summary>
+    /// Filter subscription items by price id (<c>filter[price_id]</c>).
+    /// </summary>
     public string? PriceId { get; set; }
 }

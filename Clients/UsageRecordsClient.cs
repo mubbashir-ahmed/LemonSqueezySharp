@@ -13,6 +13,7 @@ public sealed class UsageRecordsClient : ApiClientBase, IUsageRecordsClient
     private const string SubscriptionItemRelationship = "subscription-item";
     private const string SubscriptionItemResourceType = "subscription-items";
 
+    /// <summary>Initializes a new instance of the <see cref="UsageRecordsClient"/> class.</summary>
     public UsageRecordsClient(HttpClient httpClient) : base(httpClient)
     {
     }

@@ -7,5 +7,6 @@ namespace LemonSqueezy.NET.Models.LicenseKeyInstances;
 /// </summary>
 public sealed class LicenseKeyInstanceListFilter : ListFilter
 {
+    /// <summary>Only return instances belonging to this license key.</summary>
     public string? LicenseKeyId { get; set; }
 }

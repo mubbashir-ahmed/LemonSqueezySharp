@@ -10,6 +10,7 @@ namespace LemonSqueezy.NET.Serialization;
 /// </summary>
 public sealed class UnixDateTimeConverter : JsonConverter<DateTimeOffset?>
 {
+    /// <inheritdoc />
     public override DateTimeOffset? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         switch (reader.TokenType)
@@ -44,6 +45,7 @@ public sealed class UnixDateTimeConverter : JsonConverter<DateTimeOffset?>
         }
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options)
     {
         if (value is null)

@@ -8,6 +8,9 @@ namespace LemonSqueezy.NET.Models.Orders;
 /// </summary>
 public sealed class OrderInvoice
 {
+    /// <summary>
+    /// Presigned URL to the generated invoice PDF (<c>invoice_url</c>).
+    /// </summary>
     [JsonPropertyName("invoice_url")]
     public string? InvoiceUrl { get; set; }
 }

@@ -6,10 +6,13 @@ namespace LemonSqueezy.NET.Models.Webhooks;
 /// </summary>
 public sealed class UpdateWebhookRequest
 {
+    /// <summary>New HTTPS URL LemonSqueezy will POST events to.</summary>
     public string? Url { get; set; }
 
+    /// <summary>Replacement set of event names the webhook subscribes to.</summary>
     public IReadOnlyList<string>? Events { get; set; }
 
+    /// <summary>New shared secret used for HMAC signature verification of inbound events.</summary>
     public string? Secret { get; set; }
 }
 

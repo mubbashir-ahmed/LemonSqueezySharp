@@ -7,5 +7,6 @@ namespace LemonSqueezy.NET.Models.Affiliates;
 /// </summary>
 public sealed class AffiliateListFilter : ListFilter
 {
+    /// <summary>Only return affiliates belonging to this store.</summary>
     public string? StoreId { get; set; }
 }

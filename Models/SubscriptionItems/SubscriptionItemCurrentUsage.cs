@@ -8,18 +8,23 @@ namespace LemonSqueezy.NET.Models.SubscriptionItems;
 /// </summary>
 public sealed class SubscriptionItemCurrentUsage
 {
+    /// <summary>Start of the current billing period (<c>period_start</c>).</summary>
     [JsonPropertyName("period_start")]
     public DateTimeOffset? PeriodStart { get; set; }
 
+    /// <summary>End of the current billing period (<c>period_end</c>).</summary>
     [JsonPropertyName("period_end")]
     public DateTimeOffset? PeriodEnd { get; set; }
 
+    /// <summary>Total usage quantity recorded in the current period (<c>quantity</c>).</summary>
     [JsonPropertyName("quantity")]
     public int? Quantity { get; set; }
 
+    /// <summary>Unit of the billing interval, e.g. <c>"month"</c> (<c>interval_unit</c>).</summary>
     [JsonPropertyName("interval_unit")]
     public string? IntervalUnit { get; set; }
 
+    /// <summary>Number of interval units per billing period (<c>interval_quantity</c>).</summary>
     [JsonPropertyName("interval_quantity")]
     public int? IntervalQuantity { get; set; }
 }

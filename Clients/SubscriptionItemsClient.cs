@@ -11,6 +11,7 @@ public sealed class SubscriptionItemsClient : ApiClientBase, ISubscriptionItemsC
 {
     private const string ResourceType = "subscription-items";
 
+    /// <summary>Initializes a new instance of the <see cref="SubscriptionItemsClient"/> class.</summary>
     public SubscriptionItemsClient(HttpClient httpClient) : base(httpClient)
     {
     }

@@ -15,6 +15,7 @@ public sealed class CheckoutsClient : ApiClientBase, ICheckoutsClient
     private const string StoreResourceType = "stores";
     private const string VariantResourceType = "variants";
 
+    /// <summary>Initializes a new instance of the <see cref="CheckoutsClient"/> class.</summary>
     public CheckoutsClient(HttpClient httpClient) : base(httpClient)
     {
     }

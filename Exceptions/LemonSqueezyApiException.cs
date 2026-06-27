@@ -7,6 +7,12 @@ namespace LemonSqueezy.NET.Exceptions;
 /// </summary>
 public class LemonSqueezyApiException : LemonSqueezyException
 {
+    /// <summary>Initializes a new instance of the <see cref="LemonSqueezyApiException"/> class.</summary>
+    /// <param name="statusCode">The HTTP status code returned by the API.</param>
+    /// <param name="message">The message that describes the error.</param>
+    /// <param name="rawResponseBody">The raw response body, preserved for diagnostics.</param>
+    /// <param name="requestId">The optional request correlation id echoed by the server.</param>
+    /// <param name="innerException">The exception that is the cause of the current exception.</param>
     public LemonSqueezyApiException(
         HttpStatusCode statusCode,
         string message,

@@ -33,10 +33,16 @@ public sealed class CreateDiscountRequest
     /// <summary>How many months the discount is applied when <see cref="Duration"/> is <c>repeating</c>.</summary>
     public int? DurationInMonths { get; set; }
 
+    /// <summary>Date and time the discount becomes active.</summary>
     public DateTimeOffset? StartsAt { get; set; }
+
+    /// <summary>Date and time the discount expires.</summary>
     public DateTimeOffset? ExpiresAt { get; set; }
 
+    /// <summary>Whether the discount is limited to a maximum number of redemptions.</summary>
     public bool? IsLimitedRedemptions { get; set; }
+
+    /// <summary>Maximum number of redemptions allowed when <see cref="IsLimitedRedemptions"/> is <c>true</c>.</summary>
     public int? MaxRedemptions { get; set; }
 }
 

@@ -11,6 +11,7 @@ public sealed class LicenseKeysClient : ApiClientBase, ILicenseKeysClient
 {
     private const string ResourceType = "license-keys";
 
+    /// <summary>Initializes a new instance of the <see cref="LicenseKeysClient"/> class.</summary>
     public LicenseKeysClient(HttpClient httpClient) : base(httpClient)
     {
     }

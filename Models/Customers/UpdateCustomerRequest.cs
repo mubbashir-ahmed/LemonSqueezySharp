@@ -10,14 +10,19 @@ namespace LemonSqueezy.NET.Models.Customers;
 /// </remarks>
 public sealed class UpdateCustomerRequest
 {
+    /// <summary>New customer full name.</summary>
     public string? Name { get; set; }
 
+    /// <summary>New customer email address.</summary>
     public string? Email { get; set; }
 
+    /// <summary>New city.</summary>
     public string? City { get; set; }
 
+    /// <summary>New state / region.</summary>
     public string? Region { get; set; }
 
+    /// <summary>New ISO-3166 alpha-2 country code.</summary>
     public string? Country { get; set; }
 
     /// <summary>

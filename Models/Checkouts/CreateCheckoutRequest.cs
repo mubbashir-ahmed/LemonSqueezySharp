@@ -18,17 +18,22 @@ public sealed class CreateCheckoutRequest
     /// </summary>
     public long? CustomPrice { get; set; }
 
+    /// <summary>Per-checkout product overrides (name, description, post-purchase behaviour).</summary>
     public CheckoutProductOptions? ProductOptions { get; set; }
 
+    /// <summary>Per-checkout UI controls.</summary>
     public CheckoutOptions? CheckoutOptions { get; set; }
 
+    /// <summary>Customer-prefill data (name, email, address, custom fields).</summary>
     public CheckoutData? CheckoutData { get; set; }
 
+    /// <summary>When <c>true</c>, the checkout uses preview mode (no real transaction).</summary>
     public bool? Preview { get; set; }
 
     /// <summary>Hard expiry for the checkout link.</summary>
     public DateTimeOffset? ExpiresAt { get; set; }
 
+    /// <summary>When <c>true</c>, create the checkout in test mode.</summary>
     public bool? TestMode { get; set; }
 }
 

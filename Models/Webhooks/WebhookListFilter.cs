@@ -7,5 +7,6 @@ namespace LemonSqueezy.NET.Models.Webhooks;
 /// </summary>
 public sealed class WebhookListFilter : ListFilter
 {
+    /// <summary>Only return webhooks belonging to the store with this identifier.</summary>
     public string? StoreId { get; set; }
 }

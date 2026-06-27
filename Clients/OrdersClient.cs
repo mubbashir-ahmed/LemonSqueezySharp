@@ -11,6 +11,7 @@ public sealed class OrdersClient : ApiClientBase, IOrdersClient
 {
     private const string ResourceType = "orders";
 
+    /// <summary>Initializes a new instance of the <see cref="OrdersClient"/> class.</summary>
     public OrdersClient(HttpClient httpClient) : base(httpClient)
     {
     }

@@ -7,6 +7,7 @@ namespace LemonSqueezy.NET.Models.Licenses;
 /// </summary>
 public sealed class LicenseValidationResponse
 {
+    /// <summary>Whether the license key is valid (<c>valid</c>).</summary>
     [JsonPropertyName("valid")]
     public bool Valid { get; set; }
 
@@ -14,6 +15,7 @@ public sealed class LicenseValidationResponse
     [JsonPropertyName("error")]
     public string? Error { get; set; }
 
+    /// <summary>Summary of the validated license key (<c>license_key</c>).</summary>
     [JsonPropertyName("license_key")]
     public LicenseInfo? LicenseKey { get; set; }
 
@@ -21,6 +23,7 @@ public sealed class LicenseValidationResponse
     [JsonPropertyName("instance")]
     public LicenseInstanceInfo? Instance { get; set; }
 
+    /// <summary>Order and customer context for the license key (<c>meta</c>).</summary>
     [JsonPropertyName("meta")]
     public LicenseMeta? Meta { get; set; }
 }
