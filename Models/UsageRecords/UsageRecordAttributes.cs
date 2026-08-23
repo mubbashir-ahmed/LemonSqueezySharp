@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.UsageRecords;
+namespace LemonSqueezySharp.Models.UsageRecords;
 
 /// <summary>
 /// Usage-record attribute payload.

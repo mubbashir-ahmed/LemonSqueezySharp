@@ -1,9 +1,9 @@
-using LemonSqueezy.NET.Interfaces.Clients.Base;
-using LemonSqueezy.NET.Models.Common;
-using LemonSqueezy.NET.Models.Requests;
-using LemonSqueezy.NET.Models.Stores;
+using LemonSqueezySharp.Interfaces.Clients.Base;
+using LemonSqueezySharp.Models.Common;
+using LemonSqueezySharp.Models.Requests;
+using LemonSqueezySharp.Models.Stores;
 
-namespace LemonSqueezy.NET.Interfaces.Clients;
+namespace LemonSqueezySharp.Interfaces.Clients;
 
 /// <summary>
 /// Client for the LemonSqueezy <c>/v1/stores</c> endpoints.

@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.UsageRecords;
+namespace LemonSqueezySharp.Models.UsageRecords;
 
 /// <summary>
 /// Filter for <c>GET /v1/usage-records</c>.

@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Customers;
+namespace LemonSqueezySharp.Models.Customers;
 
 /// <summary>
 /// Inputs accepted by <c>POST /v1/customers</c>.

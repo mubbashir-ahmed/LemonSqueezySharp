@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Stores;
+namespace LemonSqueezySharp.Models.Stores;
 
 /// <summary>
 /// Attribute payload for a LemonSqueezy store.

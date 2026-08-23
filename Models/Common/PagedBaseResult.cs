@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Common;
+namespace LemonSqueezySharp.Models.Common;
 
 /// <summary>
 /// Strongly-typed result of a list endpoint — items plus paging cursors.

@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.LicenseKeys;
+namespace LemonSqueezySharp.Models.LicenseKeys;
 
 /// <summary>
 /// Inputs for <c>PATCH /v1/license-keys/{id}</c>. Only set the fields you want to update —

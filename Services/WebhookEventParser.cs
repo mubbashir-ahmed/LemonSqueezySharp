@@ -1,18 +1,18 @@
 using System.Text.Json;
-using LemonSqueezy.NET.Exceptions;
-using LemonSqueezy.NET.Interfaces.Services;
-using LemonSqueezy.NET.Models.Affiliates;
-using LemonSqueezy.NET.Models.Customers;
-using LemonSqueezy.NET.Models.Disputes;
-using LemonSqueezy.NET.Models.LicenseKeys;
-using LemonSqueezy.NET.Models.Orders;
-using LemonSqueezy.NET.Models.SubscriptionInvoices;
-using LemonSqueezy.NET.Models.Subscriptions;
-using LemonSqueezy.NET.Models.Webhooks;
-using LemonSqueezy.NET.Models.Webhooks.Events;
-using LemonSqueezy.NET.Serialization;
+using LemonSqueezySharp.Exceptions;
+using LemonSqueezySharp.Interfaces.Services;
+using LemonSqueezySharp.Models.Affiliates;
+using LemonSqueezySharp.Models.Customers;
+using LemonSqueezySharp.Models.Disputes;
+using LemonSqueezySharp.Models.LicenseKeys;
+using LemonSqueezySharp.Models.Orders;
+using LemonSqueezySharp.Models.SubscriptionInvoices;
+using LemonSqueezySharp.Models.Subscriptions;
+using LemonSqueezySharp.Models.Webhooks;
+using LemonSqueezySharp.Models.Webhooks.Events;
+using LemonSqueezySharp.Serialization;
 
-namespace LemonSqueezy.NET.Services;
+namespace LemonSqueezySharp.Services;
 
 /// <inheritdoc cref="IWebhookEventParser"/>
 public sealed class WebhookEventParser : IWebhookEventParser

@@ -1,7 +1,7 @@
-using LemonSqueezy.NET.Interfaces.Clients;
-using LemonSqueezy.NET.Interfaces.Services;
+using LemonSqueezySharp.Interfaces.Clients;
+using LemonSqueezySharp.Interfaces.Services;
 
-namespace LemonSqueezy.NET.Services;
+namespace LemonSqueezySharp.Services;
 
 /// <inheritdoc cref="ILemonSqueezyService"/>
 public sealed class LemonSqueezyService : ILemonSqueezyService

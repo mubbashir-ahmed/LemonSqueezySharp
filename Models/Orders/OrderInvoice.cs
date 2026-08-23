@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Orders;
+namespace LemonSqueezySharp.Models.Orders;
 
 /// <summary>
 /// Response payload from <c>POST /v1/orders/{id}/generate-invoice</c> — exposes a

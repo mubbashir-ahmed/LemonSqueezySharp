@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Variants;
+namespace LemonSqueezySharp.Models.Variants;
 
 /// <summary>
 /// Variant attribute payload.

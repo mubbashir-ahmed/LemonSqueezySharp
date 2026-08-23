@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace LemonSqueezy.NET.Exceptions;
+namespace LemonSqueezySharp.Exceptions;
 
 /// <summary>
 /// Thrown when the LemonSqueezy API returns a non-success HTTP status code.

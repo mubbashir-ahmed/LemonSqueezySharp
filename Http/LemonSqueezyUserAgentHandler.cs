@@ -1,8 +1,8 @@
 using System.Reflection;
-using LemonSqueezy.NET.Configurations;
+using LemonSqueezySharp.Configurations;
 using Microsoft.Extensions.Options;
 
-namespace LemonSqueezy.NET.Http;
+namespace LemonSqueezySharp.Http;
 
 /// <summary>
 /// Delegating handler that sets a stable User-Agent header so requests can be
@@ -40,6 +40,6 @@ internal sealed class LemonSqueezyUserAgentHandler : DelegatingHandler
             ?? assembly.GetName().Version?.ToString()
             ?? "0.0.0";
 
-        return $"LemonSqueezy.NET/{version}";
+        return $"LemonSqueezySharp/{version}";
     }
 }

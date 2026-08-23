@@ -1,10 +1,10 @@
-using LemonSqueezy.NET.Clients.Base;
-using LemonSqueezy.NET.Http;
-using LemonSqueezy.NET.Interfaces.Clients;
-using LemonSqueezy.NET.Models.Common;
-using LemonSqueezy.NET.Models.Prices;
+using LemonSqueezySharp.Clients.Base;
+using LemonSqueezySharp.Http;
+using LemonSqueezySharp.Interfaces.Clients;
+using LemonSqueezySharp.Models.Common;
+using LemonSqueezySharp.Models.Prices;
 
-namespace LemonSqueezy.NET.Clients;
+namespace LemonSqueezySharp.Clients;
 
 /// <inheritdoc cref="IPricesClient"/>
 public sealed class PricesClient : ApiClientBase, IPricesClient

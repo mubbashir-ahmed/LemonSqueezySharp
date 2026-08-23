@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Webhooks.Events;
+namespace LemonSqueezySharp.Models.Webhooks.Events;
 
 /// <summary>
 /// The set of webhook <c>event_name</c> values emitted by LemonSqueezy. Use these constants

@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Requests;
+namespace LemonSqueezySharp.Models.Requests;
 
 /// <summary>
 /// Common filter/page/include parameters shared across LemonSqueezy list endpoints.

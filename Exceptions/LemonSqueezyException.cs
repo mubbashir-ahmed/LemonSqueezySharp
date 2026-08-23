@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Exceptions;
+namespace LemonSqueezySharp.Exceptions;
 
 /// <summary>
 /// Base exception for every error originating in the LemonSqueezy SDK.

@@ -1,8 +1,8 @@
 using System.Net.Http.Headers;
-using LemonSqueezy.NET.Configurations;
+using LemonSqueezySharp.Configurations;
 using Microsoft.Extensions.Options;
 
-namespace LemonSqueezy.NET.Http;
+namespace LemonSqueezySharp.Http;
 
 /// <summary>
 /// Delegating handler that attaches the bearer token and standard Accept/Content-Type

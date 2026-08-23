@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Common;
+namespace LemonSqueezySharp.Models.Common;
 
 /// <summary>
 /// JSON:API <c>relationships</c> entry — wraps a single resource identifier

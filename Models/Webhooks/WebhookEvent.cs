@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Webhooks;
+namespace LemonSqueezySharp.Models.Webhooks;
 
 /// <summary>
 /// Inbound webhook payload from LemonSqueezy. The <c>data</c> shape varies by event type;

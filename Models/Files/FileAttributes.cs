@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Files;
+namespace LemonSqueezySharp.Models.Files;
 
 /// <summary>
 /// File (downloadable digital good) attribute payload.

@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Common;
+namespace LemonSqueezySharp.Models.Common;
 
 /// <summary>
 /// Strongly-typed result of a single-resource endpoint — the resource itself plus the

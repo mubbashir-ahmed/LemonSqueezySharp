@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Customers;
+namespace LemonSqueezySharp.Models.Customers;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy customer resource.

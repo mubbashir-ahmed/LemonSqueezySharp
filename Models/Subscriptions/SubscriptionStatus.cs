@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace LemonSqueezy.NET.Models.Subscriptions;
+namespace LemonSqueezySharp.Models.Subscriptions;
 
 /// <summary>
 /// Lifecycle status of a subscription.

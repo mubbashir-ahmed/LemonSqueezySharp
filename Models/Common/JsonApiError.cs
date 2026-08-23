@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Common;
+namespace LemonSqueezySharp.Models.Common;
 
 /// <summary>
 /// JSON:API error object. Returned in the <c>errors</c> array on non-2xx responses.

@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Http;
+namespace LemonSqueezySharp.Http;
 
 /// <summary>
 /// Central catalogue of relative API endpoint paths.

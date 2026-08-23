@@ -1,7 +1,7 @@
-using LemonSqueezy.NET.Exceptions;
-using LemonSqueezy.NET.Models.Webhooks.Events;
+using LemonSqueezySharp.Exceptions;
+using LemonSqueezySharp.Models.Webhooks.Events;
 
-namespace LemonSqueezy.NET.Interfaces.Services;
+namespace LemonSqueezySharp.Interfaces.Services;
 
 /// <summary>
 /// Parses raw LemonSqueezy webhook payloads into the strongly-typed

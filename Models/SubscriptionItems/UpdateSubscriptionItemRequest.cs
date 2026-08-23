@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.SubscriptionItems;
+namespace LemonSqueezySharp.Models.SubscriptionItems;
 
 /// <summary>
 /// Inputs for <c>PATCH /v1/subscription-items/{id}</c>.

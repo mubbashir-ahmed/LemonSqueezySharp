@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Prices;
+namespace LemonSqueezySharp.Models.Prices;
 
 /// <summary>
 /// Filter for <c>GET /v1/prices</c>.

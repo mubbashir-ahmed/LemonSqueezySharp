@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Prices;
+namespace LemonSqueezySharp.Models.Prices;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy price resource.

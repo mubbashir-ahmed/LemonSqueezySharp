@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Stores;
+namespace LemonSqueezySharp.Models.Stores;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy store resource.

@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.SubscriptionInvoices;
+namespace LemonSqueezySharp.Models.SubscriptionInvoices;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy subscription invoice resource.

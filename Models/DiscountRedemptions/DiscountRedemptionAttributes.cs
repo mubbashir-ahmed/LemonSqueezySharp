@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.DiscountRedemptions;
+namespace LemonSqueezySharp.Models.DiscountRedemptions;
 
 /// <summary>
 /// Discount-redemption attribute payload — a snapshot of the discount as applied to a

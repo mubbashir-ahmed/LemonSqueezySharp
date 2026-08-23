@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Webhooks;
+namespace LemonSqueezySharp.Models.Webhooks;
 
 /// <summary>
 /// Webhook-subscription attribute payload (server-side webhook management).

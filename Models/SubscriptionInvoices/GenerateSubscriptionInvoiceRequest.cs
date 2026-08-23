@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.SubscriptionInvoices;
+namespace LemonSqueezySharp.Models.SubscriptionInvoices;
 
 /// <summary>
 /// Optional overrides for <c>POST /v1/subscription-invoices/{id}/generate-invoice</c>.

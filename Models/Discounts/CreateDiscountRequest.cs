@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Discounts;
+namespace LemonSqueezySharp.Models.Discounts;
 
 /// <summary>
 /// Inputs for <c>POST /v1/discounts</c>.

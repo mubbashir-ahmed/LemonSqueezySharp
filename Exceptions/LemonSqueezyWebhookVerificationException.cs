@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Exceptions;
+namespace LemonSqueezySharp.Exceptions;
 
 /// <summary>
 /// Thrown when an inbound webhook payload fails HMAC-SHA256 signature verification.

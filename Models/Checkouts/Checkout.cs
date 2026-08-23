@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Checkouts;
+namespace LemonSqueezySharp.Models.Checkouts;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy checkout resource.

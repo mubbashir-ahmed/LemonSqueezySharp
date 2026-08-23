@@ -1,8 +1,8 @@
-using LemonSqueezy.NET.Interfaces.Clients.Base;
-using LemonSqueezy.NET.Models.Checkouts;
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Interfaces.Clients.Base;
+using LemonSqueezySharp.Models.Checkouts;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Interfaces.Clients;
+namespace LemonSqueezySharp.Interfaces.Clients;
 
 /// <summary>
 /// Client for the LemonSqueezy <c>/v1/checkouts</c> endpoints.

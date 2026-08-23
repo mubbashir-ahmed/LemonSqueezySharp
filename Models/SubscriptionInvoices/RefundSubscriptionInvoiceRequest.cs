@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.SubscriptionInvoices;
+namespace LemonSqueezySharp.Models.SubscriptionInvoices;
 
 /// <summary>
 /// Inputs for <c>POST /v1/subscription-invoices/{id}/refund</c>.

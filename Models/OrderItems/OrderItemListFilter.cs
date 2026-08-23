@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.OrderItems;
+namespace LemonSqueezySharp.Models.OrderItems;
 
 /// <summary>
 /// Filter for <c>GET /v1/order-items</c>.

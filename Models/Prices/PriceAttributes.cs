@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Prices;
+namespace LemonSqueezySharp.Models.Prices;
 
 /// <summary>
 /// Price attribute payload.

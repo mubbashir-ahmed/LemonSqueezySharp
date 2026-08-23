@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Files;
+namespace LemonSqueezySharp.Models.Files;
 
 /// <summary>
 /// Filter for <c>GET /v1/files</c>.

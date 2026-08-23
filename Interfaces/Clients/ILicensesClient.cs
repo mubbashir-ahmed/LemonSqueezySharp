@@ -1,7 +1,7 @@
-using LemonSqueezy.NET.Interfaces.Clients.Base;
-using LemonSqueezy.NET.Models.Licenses;
+using LemonSqueezySharp.Interfaces.Clients.Base;
+using LemonSqueezySharp.Models.Licenses;
 
-namespace LemonSqueezy.NET.Interfaces.Clients;
+namespace LemonSqueezySharp.Interfaces.Clients;
 
 /// <summary>
 /// Client for the LemonSqueezy License API endpoints (<c>/v1/licenses/*</c>).

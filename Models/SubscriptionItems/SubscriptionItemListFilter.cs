@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.SubscriptionItems;
+namespace LemonSqueezySharp.Models.SubscriptionItems;
 
 /// <summary>
 /// Filter for <c>GET /v1/subscription-items</c>.

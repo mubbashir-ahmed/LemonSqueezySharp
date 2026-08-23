@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Checkouts;
+namespace LemonSqueezySharp.Models.Checkouts;
 
 /// <summary>
 /// Inputs for <c>POST /v1/checkouts</c>. Every attribute is optional — the only

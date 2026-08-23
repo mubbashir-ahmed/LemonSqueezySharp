@@ -1,12 +1,12 @@
 using System.Text;
-using LemonSqueezy.NET.Clients.Base;
-using LemonSqueezy.NET.Http;
-using LemonSqueezy.NET.Interfaces.Clients;
-using LemonSqueezy.NET.Models.Common;
-using LemonSqueezy.NET.Models.Orders;
-using LemonSqueezy.NET.Models.SubscriptionInvoices;
+using LemonSqueezySharp.Clients.Base;
+using LemonSqueezySharp.Http;
+using LemonSqueezySharp.Interfaces.Clients;
+using LemonSqueezySharp.Models.Common;
+using LemonSqueezySharp.Models.Orders;
+using LemonSqueezySharp.Models.SubscriptionInvoices;
 
-namespace LemonSqueezy.NET.Clients;
+namespace LemonSqueezySharp.Clients;
 
 /// <inheritdoc cref="ISubscriptionInvoicesClient"/>
 public sealed class SubscriptionInvoicesClient : ApiClientBase, ISubscriptionInvoicesClient

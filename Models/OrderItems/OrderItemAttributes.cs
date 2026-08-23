@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.OrderItems;
+namespace LemonSqueezySharp.Models.OrderItems;
 
 /// <summary>
 /// Order-item attribute payload.

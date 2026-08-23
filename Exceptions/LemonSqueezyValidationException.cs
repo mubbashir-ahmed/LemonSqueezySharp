@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace LemonSqueezy.NET.Exceptions;
+namespace LemonSqueezySharp.Exceptions;
 
 /// <summary>
 /// Thrown for 422 Unprocessable Entity responses — typically a malformed JSON:API payload

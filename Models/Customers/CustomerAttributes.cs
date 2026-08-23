@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Customers;
+namespace LemonSqueezySharp.Models.Customers;
 
 /// <summary>
 /// Customer attribute payload.

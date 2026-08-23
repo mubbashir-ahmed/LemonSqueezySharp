@@ -1,15 +1,15 @@
-using LemonSqueezy.NET.Clients;
-using LemonSqueezy.NET.Configurations;
-using LemonSqueezy.NET.Http;
-using LemonSqueezy.NET.Interfaces.Clients;
-using LemonSqueezy.NET.Interfaces.Services;
-using LemonSqueezy.NET.Services;
+using LemonSqueezySharp.Clients;
+using LemonSqueezySharp.Configurations;
+using LemonSqueezySharp.Http;
+using LemonSqueezySharp.Interfaces.Clients;
+using LemonSqueezySharp.Interfaces.Services;
+using LemonSqueezySharp.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace LemonSqueezy.NET.Extensions;
+namespace LemonSqueezySharp.Extensions;
 
 /// <summary>
 /// Entry-point DI extensions for wiring the LemonSqueezy SDK into

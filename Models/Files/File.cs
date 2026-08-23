@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Files;
+namespace LemonSqueezySharp.Models.Files;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy file resource.

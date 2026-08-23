@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Options;
 
-namespace LemonSqueezy.NET.Configurations;
+namespace LemonSqueezySharp.Configurations;
 
 /// <summary>
 /// Validates <see cref="LemonSqueezyOptions"/> at startup.

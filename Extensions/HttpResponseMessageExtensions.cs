@@ -1,8 +1,8 @@
 using System.Net.Http.Json;
-using LemonSqueezy.NET.Models.Common;
-using LemonSqueezy.NET.Serialization;
+using LemonSqueezySharp.Models.Common;
+using LemonSqueezySharp.Serialization;
 
-namespace LemonSqueezy.NET.Extensions;
+namespace LemonSqueezySharp.Extensions;
 
 /// <summary>
 /// Convenience helpers for reading JSON:API envelopes off an

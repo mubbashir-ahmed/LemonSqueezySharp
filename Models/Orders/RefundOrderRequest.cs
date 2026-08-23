@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Orders;
+namespace LemonSqueezySharp.Models.Orders;
 
 /// <summary>
 /// Inputs for <c>POST /v1/orders/{id}/refund</c>.

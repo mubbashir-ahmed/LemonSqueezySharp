@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Webhooks;
+namespace LemonSqueezySharp.Models.Webhooks;
 
 /// <summary>
 /// Filter for <c>GET /v1/webhooks</c>.

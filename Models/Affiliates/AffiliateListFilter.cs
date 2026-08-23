@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Affiliates;
+namespace LemonSqueezySharp.Models.Affiliates;
 
 /// <summary>
 /// Filter for <c>GET /v1/affiliates</c>.

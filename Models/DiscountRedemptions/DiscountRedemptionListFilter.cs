@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.DiscountRedemptions;
+namespace LemonSqueezySharp.Models.DiscountRedemptions;
 
 /// <summary>
 /// Filter for <c>GET /v1/discount-redemptions</c>.

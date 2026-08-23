@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.UsageRecords;
+namespace LemonSqueezySharp.Models.UsageRecords;
 
 /// <summary>
 /// Inputs for <c>POST /v1/usage-records</c>.

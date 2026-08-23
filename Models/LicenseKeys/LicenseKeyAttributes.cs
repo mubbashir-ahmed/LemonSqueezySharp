@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.LicenseKeys;
+namespace LemonSqueezySharp.Models.LicenseKeys;
 
 /// <summary>
 /// License-key attribute payload.

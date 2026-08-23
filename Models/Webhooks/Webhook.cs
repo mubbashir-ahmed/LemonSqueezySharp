@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Webhooks;
+namespace LemonSqueezySharp.Models.Webhooks;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy webhook resource.

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Products;
+namespace LemonSqueezySharp.Models.Products;
 
 /// <summary>
 /// Product attribute payload.

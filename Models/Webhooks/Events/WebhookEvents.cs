@@ -1,12 +1,12 @@
-using LemonSqueezy.NET.Models.Affiliates;
-using LemonSqueezy.NET.Models.Customers;
-using LemonSqueezy.NET.Models.Disputes;
-using LemonSqueezy.NET.Models.LicenseKeys;
-using LemonSqueezy.NET.Models.Orders;
-using LemonSqueezy.NET.Models.SubscriptionInvoices;
-using LemonSqueezy.NET.Models.Subscriptions;
+using LemonSqueezySharp.Models.Affiliates;
+using LemonSqueezySharp.Models.Customers;
+using LemonSqueezySharp.Models.Disputes;
+using LemonSqueezySharp.Models.LicenseKeys;
+using LemonSqueezySharp.Models.Orders;
+using LemonSqueezySharp.Models.SubscriptionInvoices;
+using LemonSqueezySharp.Models.Subscriptions;
 
-namespace LemonSqueezy.NET.Models.Webhooks.Events;
+namespace LemonSqueezySharp.Models.Webhooks.Events;
 
 // One sealed record per LemonSqueezy event name. The closed set lets consumers pattern-match
 // exhaustively over LemonSqueezyWebhookEvent. Each carries its typed resource in Data.

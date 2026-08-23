@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Interfaces.Clients;
+using LemonSqueezySharp.Interfaces.Clients;
 
-namespace LemonSqueezy.NET.Clients;
+namespace LemonSqueezySharp.Clients;
 
 /// <summary>
 /// Default <see cref="ILemonSqueezyClient"/> implementation. Wires each resource client

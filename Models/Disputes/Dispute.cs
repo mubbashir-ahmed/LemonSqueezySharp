@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Disputes;
+namespace LemonSqueezySharp.Models.Disputes;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy dispute resource.

@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Orders;
+namespace LemonSqueezySharp.Models.Orders;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy order resource.

@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Serialization;
+namespace LemonSqueezySharp.Serialization;
 
 /// <summary>
 /// Reads/writes <see cref="DateTimeOffset"/> values that may arrive as ISO-8601 strings

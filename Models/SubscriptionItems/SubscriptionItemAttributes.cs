@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.SubscriptionItems;
+namespace LemonSqueezySharp.Models.SubscriptionItems;
 
 /// <summary>
 /// Subscription-item attribute payload.

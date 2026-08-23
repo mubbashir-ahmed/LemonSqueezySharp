@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Products;
+namespace LemonSqueezySharp.Models.Products;
 
 /// <summary>
 /// Filter for <c>GET /v1/products</c>. Extends the standard <see cref="ListFilter"/>

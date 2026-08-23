@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Licenses;
+namespace LemonSqueezySharp.Models.Licenses;
 
 /// <summary>
 /// Flat summary of a license key, embedded in License-API responses (different shape

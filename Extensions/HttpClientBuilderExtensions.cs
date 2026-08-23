@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LemonSqueezy.NET.Extensions;
+namespace LemonSqueezySharp.Extensions;
 
 /// <summary>
 /// Hook for callers to attach additional handlers (Polly retry, logging,

@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Orders;
+namespace LemonSqueezySharp.Models.Orders;
 
 /// <summary>
 /// Filter for <c>GET /v1/orders</c>.

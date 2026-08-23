@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Affiliates;
+namespace LemonSqueezySharp.Models.Affiliates;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy affiliate resource.

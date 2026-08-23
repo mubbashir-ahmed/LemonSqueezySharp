@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Subscriptions;
+namespace LemonSqueezySharp.Models.Subscriptions;
 
 /// <summary>
 /// Inputs for <c>PATCH /v1/subscriptions/{id}</c>. Only set the properties you

@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.Variants;
+namespace LemonSqueezySharp.Models.Variants;
 
 /// <summary>
 /// Filter for <c>GET /v1/variants</c>.

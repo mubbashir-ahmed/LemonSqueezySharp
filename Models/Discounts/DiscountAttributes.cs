@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Discounts;
+namespace LemonSqueezySharp.Models.Discounts;
 
 /// <summary>
 /// Discount attribute payload.

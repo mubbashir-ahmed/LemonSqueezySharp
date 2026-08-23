@@ -1,10 +1,10 @@
-# LemonSqueezy.NET
+# LemonSqueezySharp
 
-[![NuGet](https://img.shields.io/nuget/v/LemonSqueezy.NET.svg)](https://www.nuget.org/packages/LemonSqueezy.NET)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/LemonSqueezy.NET.svg)](https://www.nuget.org/packages/LemonSqueezy.NET)
+[![NuGet](https://img.shields.io/nuget/v/LemonSqueezySharp.svg)](https://www.nuget.org/packages/LemonSqueezySharp)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/LemonSqueezySharp.svg)](https://www.nuget.org/packages/LemonSqueezySharp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/mubbashir-ahmed/LemonSqueezy.NET/actions/workflows/ci.yml/badge.svg)](https://github.com/mubbashir-ahmed/LemonSqueezy.NET/actions/workflows/ci.yml)
-[![Target Frameworks](https://img.shields.io/badge/targets-net10.0%20%7C%20netstandard2.0-512BD4)](LemonSqueezy.NET.csproj)
+[![CI](https://github.com/mubbashir-ahmed/LemonSqueezySharp/actions/workflows/ci.yml/badge.svg)](https://github.com/mubbashir-ahmed/LemonSqueezySharp/actions/workflows/ci.yml)
+[![Target Frameworks](https://img.shields.io/badge/targets-net10.0%20%7C%20netstandard2.0-512BD4)](LemonSqueezySharp.csproj)
 
 > Unofficial .NET SDK for the [LemonSqueezy API](https://docs.lemonsqueezy.com/api). Strongly-typed clients, `IHttpClientFactory`-based, DI-first, with built-in webhook signature verification.
 
@@ -28,7 +28,7 @@
 ## Install
 
 ```bash
-dotnet add package LemonSqueezy.NET
+dotnet add package LemonSqueezySharp
 ```
 
 ---
@@ -52,7 +52,7 @@ The test suite runs against **net10.0**, **net48**, and **net472**, so the netst
 ### 1. Register the SDK
 
 ```csharp
-using LemonSqueezy.NET.Extensions;
+using LemonSqueezySharp.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
@@ -82,7 +82,7 @@ services.AddLemonSqueezy(builder.Configuration);
 ### 2. Use it
 
 ```csharp
-using LemonSqueezy.NET.Clients.Interfaces;
+using LemonSqueezySharp.Clients.Interfaces;
 
 public class BillingService(ILemonSqueezyClient lemonSqueezy)
 {
@@ -106,7 +106,7 @@ All options live on `LemonSqueezyOptions` (binding section: `LemonSqueezy`):
 | `BaseAddress`           | `Uri`           | `https://api.lemonsqueezy.com/v1/`       | Override only for testing or proxies.             |
 | `Timeout`               | `TimeSpan`      | `100s`                                   | Per-request timeout applied to every `HttpClient`.|
 | `WebhookSigningSecret`  | `string?`       | `null`                                   | Required if you use `IWebhookVerifier`.           |
-| `UserAgent`             | `string?`       | `LemonSqueezy.NET/{version}`             | Override the outbound `User-Agent`.               |
+| `UserAgent`             | `string?`       | `LemonSqueezySharp/{version}`             | Override the outbound `User-Agent`.               |
 
 Validation runs on startup via `IValidateOptions<LemonSqueezyOptions>`, so misconfigurations fail fast.
 
@@ -221,8 +221,8 @@ catch (LemonSqueezyRateLimitException ex)
 ## Project structure
 
 ```
-LemonSqueezy.NET/
-├── LemonSqueezy.NET.csproj       multi-target net10.0 + netstandard2.0
+LemonSqueezySharp/
+├── LemonSqueezySharp.csproj       multi-target net10.0 + netstandard2.0
 ├── Directory.Build.props         shared MSBuild props
 ├── .editorconfig                 code style
 │
@@ -253,7 +253,7 @@ LemonSqueezy.NET/
 ├── Configurations/               LemonSqueezyOptions + validator
 ├── Serialization/                JSON options, UnixDateTimeConverter
 │
-└── tests/LemonSqueezy.NET.Tests/ xUnit + FluentAssertions + NSubstitute (net10.0 / net48 / net472)
+└── tests/LemonSqueezySharp.Tests/ xUnit + FluentAssertions + NSubstitute (net10.0 / net48 / net472)
 ```
 
 ---

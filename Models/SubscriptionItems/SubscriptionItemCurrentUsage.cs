@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.SubscriptionItems;
+namespace LemonSqueezySharp.Models.SubscriptionItems;
 
 /// <summary>
 /// Response payload of <c>GET /v1/subscription-items/{id}/current-usage</c>. Returned

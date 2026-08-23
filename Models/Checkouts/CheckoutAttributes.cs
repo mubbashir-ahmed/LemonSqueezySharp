@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Checkouts;
+namespace LemonSqueezySharp.Models.Checkouts;
 
 /// <summary>
 /// Checkout attribute payload.

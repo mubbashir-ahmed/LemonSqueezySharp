@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.LicenseKeyInstances;
+namespace LemonSqueezySharp.Models.LicenseKeyInstances;
 
 /// <summary>
 /// License-key-instance attribute payload — represents a single activation of a license

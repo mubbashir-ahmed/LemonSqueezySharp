@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace LemonSqueezy.NET.Exceptions;
+namespace LemonSqueezySharp.Exceptions;
 
 /// <summary>
 /// Thrown for 401 Unauthorized responses — typically a missing or invalid API key.

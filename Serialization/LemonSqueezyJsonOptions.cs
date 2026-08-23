@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Serialization;
+namespace LemonSqueezySharp.Serialization;
 
 /// <summary>
 /// Shared <see cref="JsonSerializerOptions"/> tuned for the LemonSqueezy JSON:API.

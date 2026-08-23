@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.Users;
+namespace LemonSqueezySharp.Models.Users;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy user resource.

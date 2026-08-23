@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Licenses;
+namespace LemonSqueezySharp.Models.Licenses;
 
 /// <summary>
 /// Response of <c>POST /v1/licenses/validate</c>.

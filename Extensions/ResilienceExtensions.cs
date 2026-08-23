@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Http.Resilience;
 
-namespace LemonSqueezy.NET.Extensions;
+namespace LemonSqueezySharp.Extensions;
 
 /// <summary>
 /// Opt-in Polly resilience for the SDK's HTTP clients, built on

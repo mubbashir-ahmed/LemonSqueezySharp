@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.LicenseKeys;
+namespace LemonSqueezySharp.Models.LicenseKeys;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy license key resource.

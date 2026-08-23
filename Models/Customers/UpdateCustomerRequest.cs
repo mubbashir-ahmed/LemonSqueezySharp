@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Customers;
+namespace LemonSqueezySharp.Models.Customers;
 
 /// <summary>
 /// Inputs accepted by <c>PATCH /v1/customers/{id}</c>. Only set the properties you

@@ -1,10 +1,10 @@
 using System.Security.Cryptography;
 using System.Text;
-using LemonSqueezy.NET.Configurations;
-using LemonSqueezy.NET.Interfaces.Services;
+using LemonSqueezySharp.Configurations;
+using LemonSqueezySharp.Interfaces.Services;
 using Microsoft.Extensions.Options;
 
-namespace LemonSqueezy.NET.Services;
+namespace LemonSqueezySharp.Services;
 
 /// <inheritdoc cref="IWebhookVerifier"/>
 public sealed class WebhookVerifier : IWebhookVerifier

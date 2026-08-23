@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Webhooks;
+namespace LemonSqueezySharp.Models.Webhooks;
 
 /// <summary>
 /// Inputs for <c>POST /v1/webhooks</c>.

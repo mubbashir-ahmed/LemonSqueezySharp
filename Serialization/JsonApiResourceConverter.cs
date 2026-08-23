@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Serialization;
+namespace LemonSqueezySharp.Serialization;
 
 /// <summary>
 /// Reserved for custom flattening of JSON:API <c>{ data, included }</c> envelopes once

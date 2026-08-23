@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.DiscountRedemptions;
+namespace LemonSqueezySharp.Models.DiscountRedemptions;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy discount redemption resource.

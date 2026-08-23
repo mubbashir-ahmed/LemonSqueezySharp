@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Disputes;
+namespace LemonSqueezySharp.Models.Disputes;
 
 /// <summary>
 /// Dispute attribute payload. Disputes are delivered via the <c>dispute_created</c> and

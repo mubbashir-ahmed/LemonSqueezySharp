@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Configurations;
+namespace LemonSqueezySharp.Configurations;
 
 /// <summary>
 /// Configuration options for the LemonSqueezy SDK.

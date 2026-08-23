@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace LemonSqueezy.NET.Models.Affiliates;
+namespace LemonSqueezySharp.Models.Affiliates;
 
 /// <summary>
 /// Affiliate attribute payload.

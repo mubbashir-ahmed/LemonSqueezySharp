@@ -1,7 +1,7 @@
 using System.Text.Json;
-using LemonSqueezy.NET.Serialization;
+using LemonSqueezySharp.Serialization;
 
-namespace LemonSqueezy.NET.Models.Webhooks.Events;
+namespace LemonSqueezySharp.Models.Webhooks.Events;
 
 /// <summary>
 /// Base type for a strongly-typed, parsed LemonSqueezy webhook event. Every known

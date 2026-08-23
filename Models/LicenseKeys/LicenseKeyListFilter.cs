@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Requests;
+using LemonSqueezySharp.Models.Requests;
 
-namespace LemonSqueezy.NET.Models.LicenseKeys;
+namespace LemonSqueezySharp.Models.LicenseKeys;
 
 /// <summary>
 /// Filter for <c>GET /v1/license-keys</c>.

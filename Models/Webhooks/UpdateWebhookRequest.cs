@@ -1,4 +1,4 @@
-namespace LemonSqueezy.NET.Models.Webhooks;
+namespace LemonSqueezySharp.Models.Webhooks;
 
 /// <summary>
 /// Inputs for <c>PATCH /v1/webhooks/{id}</c>. Only set the fields you want to update;

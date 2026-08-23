@@ -1,6 +1,6 @@
-using LemonSqueezy.NET.Models.Common;
+using LemonSqueezySharp.Models.Common;
 
-namespace LemonSqueezy.NET.Models.UsageRecords;
+namespace LemonSqueezySharp.Models.UsageRecords;
 
 /// <summary>
 /// Strongly-typed alias for a LemonSqueezy usage record resource.

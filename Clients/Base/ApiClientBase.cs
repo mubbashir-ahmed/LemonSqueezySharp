@@ -4,13 +4,13 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using LemonSqueezy.NET.Exceptions;
-using LemonSqueezy.NET.Interfaces.Clients.Base;
-using LemonSqueezy.NET.Models.Common;
-using LemonSqueezy.NET.Models.Requests;
-using LemonSqueezy.NET.Serialization;
+using LemonSqueezySharp.Exceptions;
+using LemonSqueezySharp.Interfaces.Clients.Base;
+using LemonSqueezySharp.Models.Common;
+using LemonSqueezySharp.Models.Requests;
+using LemonSqueezySharp.Serialization;
 
-namespace LemonSqueezy.NET.Clients.Base;
+namespace LemonSqueezySharp.Clients.Base;
 
 /// <summary>
 /// Shared HTTP plumbing for every resource-specific client: dispatching requests,
