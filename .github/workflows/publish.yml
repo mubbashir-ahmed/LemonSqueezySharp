@@ -1,4 +1,4 @@
-name: CI
+name: Publish
 
 # Build & test on every push/PR to main.
 # On a published GitHub Release (tag = version, e.g. v0.2.0), also packs and pushes
@@ -8,7 +8,7 @@ name: CI
 #
 # Prerequisites before a release can publish:
 #   1. Create a Trusted Publishing policy on nuget.org for this repo + this workflow
-#      file (.github/workflows/ci.yml), scoped to the "LemonSqueezySharp" package
+#      file (.github/workflows/publish.yml), scoped to the "LemonSqueezySharp" package
 #      (Account -> Trusted Publishing).
 #   2. Add a repository variable NUGET_USER with your nuget.org username
 #      (Settings -> Secrets and variables -> Actions -> Variables).

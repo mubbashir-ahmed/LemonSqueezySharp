@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/LemonSqueezySharp.svg)](https://www.nuget.org/packages/LemonSqueezySharp)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/LemonSqueezySharp.svg)](https://www.nuget.org/packages/LemonSqueezySharp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/mubbashir-ahmed/LemonSqueezySharp/actions/workflows/ci.yml/badge.svg)](https://github.com/mubbashir-ahmed/LemonSqueezySharp/actions/workflows/ci.yml)
+[![Build](https://github.com/mubbashir-ahmed/LemonSqueezySharp/actions/workflows/publish.yml/badge.svg)](https://github.com/mubbashir-ahmed/LemonSqueezySharp/actions/workflows/publish.yml)
 [![Target Frameworks](https://img.shields.io/badge/targets-net10.0%20%7C%20netstandard2.0-512BD4)](LemonSqueezySharp.csproj)
 
 > Unofficial .NET SDK for the [LemonSqueezy API](https://docs.lemonsqueezy.com/api). Strongly-typed clients, `IHttpClientFactory`-based, DI-first, with built-in webhook signature verification.
