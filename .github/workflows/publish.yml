@@ -1,18 +1,5 @@
 name: Publish
 
-# Build & test on every push/PR to main.
-# On a published GitHub Release (tag = version, e.g. v0.2.0), also packs and pushes
-# to NuGet.org via Trusted Publishing (OIDC) — no long-lived API key.
-# Manual workflow_dispatch with an explicit version is always a DRY RUN: builds,
-# tests, packs, and uploads the .nupkg artifact, but never pushes.
-#
-# Prerequisites before a release can publish:
-#   1. Create a Trusted Publishing policy on nuget.org for this repo + this workflow
-#      file (.github/workflows/publish.yml), scoped to the "LemonSqueezySharp" package
-#      (Account -> Trusted Publishing).
-#   2. Add a repository variable NUGET_USER with your nuget.org username
-#      (Settings -> Secrets and variables -> Actions -> Variables).
-
 on:
   push:
     branches: [ main ]
@@ -28,18 +15,14 @@ on:
 
 permissions:
   contents: read
-  id-token: write   # required for NuGet Trusted Publishing (OIDC token exchange)
+  id-token: write
 
-# Cancel superseded CI runs on the same ref. Releases/dispatch use a unique group
-# so a flurry of PR builds cannot cancel a publish mid-flight.
 concurrency:
   group: ${{ (github.event_name == 'pull_request' || github.event_name == 'push') && format('ci-{0}', github.ref) || format('publish-{0}', github.run_id) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
 
 jobs:
   build-and-test:
-    # Windows is required: the test project also targets net48/net472, which only
-    # execute on .NET Framework (Windows-only).
     runs-on: windows-latest
 
     steps:
@@ -58,25 +41,20 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
           restore-keys: ${{ runner.os }}-nuget-
 
-      # Only needed when packing; CI push/PR builds use the Version in the csproj.
       - name: Resolve version
         id: version
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
         shell: pwsh
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
         run: |
-          if ('${{ github.event_name }}' -eq 'release') {
-            $v = '${{ github.event.release.tag_name }}'.TrimStart('v')
-          } else {
-            $v = '${{ github.event.inputs.version }}'
-          }
+          if ($env:EVENT_NAME -eq 'release') { $v = $env:TAG_NAME.TrimStart('v') } else { $v = $env:INPUT_VERSION }
           if ([string]::IsNullOrWhiteSpace($v)) { throw 'Could not resolve a version.' }
           "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           Write-Host "Publishing version $v"
 
-      # Target the test project rather than the whole solution so the manual harness under
-      # samples/ is excluded. The test project references the library and targets
-      # net10.0/net48/net472, so this still builds both library TFMs (net10.0 + netstandard2.0).
-      # For release/dispatch, -p:Version stamps the assemblies so pack --no-build is correct.
       - name: Restore
         run: dotnet restore tests/LemonSqueezySharp.Tests/LemonSqueezySharp.Tests.csproj
 
@@ -105,8 +83,6 @@ jobs:
           name: nuget-packages
           path: artifacts/*.*nupkg
 
-      # Trusted Publishing: exchange the GitHub OIDC token for a short-lived NuGet API key.
-      # Only runs for real releases; manual dispatch stays a dry run (no login, no push).
       - name: NuGet login (Trusted Publishing)
         if: github.event_name == 'release'
         uses: NuGet/login@v1
