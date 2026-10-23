@@ -10,7 +10,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591;CA1510;CA1720;CA1846;CA2201</NoWarn>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <DefaultItemExcludes>$(DefaultItemExcludes);tests/**;</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);tests/**</DefaultItemExcludes>
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
@@ -48,7 +48,6 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
