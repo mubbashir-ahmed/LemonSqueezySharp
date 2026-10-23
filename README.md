@@ -307,6 +307,20 @@ The repository uses `Directory.Build.props`, `.editorconfig`, and `TreatWarnings
 
 ---
 
+## Contributing
+
+Contributions are welcome: bug reports, fixes, new endpoints, docs, and tests.
+
+1. Check [existing issues](https://github.com/mubbashir-ahmed/LemonSqueezySharp/issues) or open one to discuss larger changes first.
+2. Fork the repo and create a branch from `main`.
+3. Make your change, with tests where it makes sense.
+4. Run `dotnet build -c Release` and `dotnet test -c Release`.
+5. Open a pull request against `main`.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup details and guidelines. By contributing, you agree that your contributions are licensed under the project's MIT license.
+
+---
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
