@@ -1,7 +1,4 @@
 <Solution>
-  <Folder Name="/samples/">
-    <Project Path="samples/LemonSqueezySharp.ConsoleTester/LemonSqueezySharp.ConsoleTester.csproj" />
-  </Folder>
   <Project Path="LemonSqueezySharp.csproj" />
   <Project Path="tests/LemonSqueezySharp.Tests/LemonSqueezySharp.Tests.csproj" />
 </Solution>
