@@ -82,7 +82,8 @@ services.AddLemonSqueezy(builder.Configuration);
 ### 2. Use it
 
 ```csharp
-using LemonSqueezySharp.Clients.Interfaces;
+using LemonSqueezySharp.Interfaces.Clients;
+using LemonSqueezySharp.Models.Subscriptions;
 
 public class BillingService(ILemonSqueezyClient lemonSqueezy)
 {
