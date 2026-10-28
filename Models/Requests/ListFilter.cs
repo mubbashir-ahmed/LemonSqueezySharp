@@ -20,4 +20,11 @@ public class ListFilter
     /// Comma-separated list of related resources to side-load (<c>include</c>).
     /// </summary>
     public string? Include { get; set; }
+
+    /// <summary>
+    /// Sort expression for list endpoints (JSON:API <c>sort</c>).
+    /// A leading <c>-</c> sorts descending, e.g. <c>-created_at</c> (newest first).
+    /// Common values: <c>created_at</c>, <c>updated_at</c>, <c>price</c>, <c>name</c>.
+    /// </summary>
+    public string? Sort { get; set; }
 }

@@ -154,6 +154,21 @@ public class ProductsClientTests
     }
 
     [Fact]
+    public async Task ListAsync_serialises_sort_parameter()
+    {
+        var (client, handler) = CreateSut();
+        handler.EnqueueJson(HttpStatusCode.OK, ProductListPayload);
+
+        _ = await client.ListAsync(new ProductListFilter
+        {
+            Sort = "-created_at",
+        });
+
+        var query = handler.Requests[0].RequestUri!.Query;
+        query.Should().Contain("sort=-created_at");
+    }
+
+    [Fact]
     public async Task ListAsync_exposes_paging_cursors_from_envelope()
     {
         var (client, handler) = CreateSut();

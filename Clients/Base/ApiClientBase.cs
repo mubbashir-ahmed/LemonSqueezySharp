@@ -223,7 +223,7 @@ public abstract class ApiClientBase : IApiClient
     }
 
     /// <summary>
-    /// Serialises common list parameters (<c>page[number]</c>, <c>page[size]</c>, <c>include</c>)
+    /// Serialises common list parameters (<c>page[number]</c>, <c>page[size]</c>, <c>include</c>, <c>sort</c>)
     /// into a query string. Derived clients that need to append resource-specific filters
     /// should call <see cref="BuildListQueryBuilder"/> instead and continue writing to the
     /// returned <see cref="StringBuilder"/>.
@@ -247,6 +247,7 @@ public abstract class ApiClientBase : IApiClient
         Append(builder, "page[number]", filter.PageNumber?.ToString(CultureInfo.InvariantCulture));
         Append(builder, "page[size]", filter.PageSize?.ToString(CultureInfo.InvariantCulture));
         Append(builder, "include", filter.Include);
+        Append(builder, "sort", filter.Sort);
 
         return builder;
     }
