@@ -325,7 +325,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for setup details and guidelines. By cont
 ## Contributors
 
 - [Mubbashir Ahmed](https://github.com/mubbashir-ahmed) — owner
-- [Muhammad Raza Haider](https://github.com/rootsiemen) — contributor
+- [Muhamad Raza Haider](https://github.com/rootsiemen) — contributor
 
 ---
 
